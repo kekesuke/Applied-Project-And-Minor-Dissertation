@@ -1,5 +1,6 @@
 package com.fitnessbuddyapi.models;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,6 +38,14 @@ public class User {
 				joinColumns = @JoinColumn(name = "user_id"), 
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
+	
+
+	@ManyToMany(mappedBy = "senderUser")
+	private Set <MessageModel> sentMessage;
+
+	
+
+	 
 
 	public User() {
 	}
@@ -86,4 +95,12 @@ public class User {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
+	
+	  public Set<MessageModel> getMessages() { 
+		  return sentMessage; 
+	  }
+	  
+	  public void setMessages(Set<MessageModel> messages) { 
+		  this.sentMessage = messages; 
+	  }
 }
