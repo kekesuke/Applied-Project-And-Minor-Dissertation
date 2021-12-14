@@ -40,8 +40,9 @@ public class User {
 	private Set<Role> roles = new HashSet<>();
 	
 
-	@ManyToMany(mappedBy = "senderUser")
-	private Set <MessageModel> sentMessage;
+	/*
+	 * @ManyToMany(mappedBy = "senderUser") private Set <MessageModel> sentMessage;
+	 */
 
 	
 
@@ -96,11 +97,10 @@ public class User {
 		this.roles = roles;
 	}
 	
-	  public Set<MessageModel> getMessages() { 
-		  return sentMessage; 
-	  }
-	  
-	  public void setMessages(Set<MessageModel> messages) { 
-		  this.sentMessage = messages; 
-	  }
+	/*
+	 * public Set<MessageModel> getMessages() { return sentMessage; }
+	 * 
+	 * public void setMessages(Set<MessageModel> messages) { this.sentMessage =
+	 * messages; }
+	 */
 }

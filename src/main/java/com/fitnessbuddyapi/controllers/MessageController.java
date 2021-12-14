@@ -1,31 +1,21 @@
 package com.fitnessbuddyapi.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
 
 import com.fitnessbuddyapi.models.MessageModel;
-import com.fitnessbuddyapi.repositories.UserRepository;
+import com.fitnessbuddyapi.payload.response.MessageResponse;
 
-@RestController
+@Controller
 public class MessageController {
 	
-	@Autowired
-	UserRepository userRepo;
-	
-	@Autowired
-	private SimpMessagingTemplate simpMessagingTemplate;
-	
-	@MessageMapping("/chat/{to}")
-	public void sendMessage(@DestinationVariable String to, MessageModel message) {
-		System.out.println("Send message: " + message + " to:" + to);
-		
-		boolean userInDb = userRepo.existsByUsername(to);
-		if(userInDb) {
-			simpMessagingTemplate.convertAndSend("/topic.messages" + to,message);
-		}
+	@MessageMapping("/chat")
+	@SendTo("/topic/chat")
+	public MessageResponse getMessage( MessageModel message) {
+		return new MessageResponse(message.getMessage() + "hello");
 	}
-
+	
+	
 }
+
