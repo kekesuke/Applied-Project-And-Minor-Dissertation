@@ -40,5 +40,6 @@ dependencies {
     implementation("io.ktor:ktor-client-android:1.6.6")
     implementation("io.ktor:ktor-client-serialization:1.6.6")
     implementation("io.ktor:ktor-client-logging:1.6.6")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha02")
 
 }
