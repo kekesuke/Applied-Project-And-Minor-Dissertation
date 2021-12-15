@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     kotlin("android")
     id("kotlin-android-extensions")
     id ("org.jetbrains.kotlin.plugin.serialization")
@@ -45,6 +46,10 @@ dependencies {
     implementation("io.ktor:ktor-client-android:1.6.6")
     implementation("io.ktor:ktor-client-serialization:1.6.6")
     implementation("io.ktor:ktor-client-logging:1.6.6")
-    implementation("com.google.android.gms:play-services:12.0.1")
+    //google services
+    implementation("com.google.android.gms:play-services-maps:18.0.0")
+    //google locations
+    implementation("com.google.android.gms:play-services-location:18.0.0")//needed for current update location
+   // implementation("com.google.android.gms:play-services:12.0.1")
 
 }
