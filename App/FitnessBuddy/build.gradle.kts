@@ -3,6 +3,7 @@ plugins {
     kotlin("android")
     id("kotlin-android-extensions")
     id ("org.jetbrains.kotlin.plugin.serialization")
+    id("kotlin-android")
 }
 
 android {
@@ -19,6 +20,9 @@ android {
             isMinifyEnabled = false
         }
     }
+    buildFeatures {
+        viewBinding = true
+    }
 
     packagingOptions {
         resources.excludes.add("META-INF/DEPENDENCIES")
@@ -34,11 +38,13 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.4.0")
+    //implementation("com.google.android.gms:play-services-location:19.0.0")//play service
     implementation("androidx.appcompat:appcompat:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.2")
     implementation("io.ktor:ktor-client-core:1.6.6")
     implementation("io.ktor:ktor-client-android:1.6.6")
     implementation("io.ktor:ktor-client-serialization:1.6.6")
     implementation("io.ktor:ktor-client-logging:1.6.6")
+    implementation("com.google.android.gms:play-services:12.0.1")
 
 }
