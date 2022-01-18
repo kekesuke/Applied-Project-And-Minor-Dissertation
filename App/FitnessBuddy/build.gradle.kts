@@ -3,6 +3,9 @@ plugins {
     kotlin("android")
     id("kotlin-android-extensions")
     id ("org.jetbrains.kotlin.plugin.serialization")
+    id("kotlin-android")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+
 }
 
 android {
@@ -41,5 +44,6 @@ dependencies {
     implementation("io.ktor:ktor-client-serialization:1.6.6")
     implementation("io.ktor:ktor-client-logging:1.6.6")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0-alpha02")
+    implementation("com.google.android.gms:play-services-maps:18.0.0")
 
 }
