@@ -8,13 +8,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.fitnessbuddyapi.models.ERole;
 import com.fitnessbuddyapi.models.Role;
-import com.fitnessbuddyapi.services.interfaces.IRoleService;
+import com.fitnessbuddyapi.interfaces.IRoleService;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
+@EnableEurekaClient
+@EnableFeignClients(
+		basePackages = "com.fitnessbuddy.clients"
+)
 public class AuthApplication implements CommandLineRunner {
 	private static final Logger log = LoggerFactory.getLogger(AuthApplication.class);
 	

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.fitnessbuddyapi.models.Role;
 import com.fitnessbuddyapi.repositories.RoleRepository;
-import com.fitnessbuddyapi.services.interfaces.IRoleService;
+import com.fitnessbuddyapi.interfaces.IRoleService;
 
 @Service
 public class RoleServiceImpl implements IRoleService<Role> {
