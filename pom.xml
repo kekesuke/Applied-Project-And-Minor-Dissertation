@@ -13,6 +13,7 @@
       <module>eureka-server</module>
         <module>notification</module>
         <module>feign-clients</module>
+      <module>api-gateway</module>
     </modules>
 
     <name>fitnessbuddyservices</name>
