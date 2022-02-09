@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="feign-clients" />
+        <module name="notification" />
+        <module name="advanced-message-queues-protocol" />
+        <module name="fraud" />
+        <module name="api-gateway" />
+        <module name="stomp" />
+        <module name="eureka-server" />
+        <module name="authentication" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="feign-clients" options="" />
+    </option>
+  </component>
+</project>
