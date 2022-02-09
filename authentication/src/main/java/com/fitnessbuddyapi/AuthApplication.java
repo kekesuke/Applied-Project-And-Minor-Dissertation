@@ -13,7 +13,12 @@ import com.fitnessbuddyapi.interfaces.IRoleService;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@SpringBootApplication
+@SpringBootApplication(
+		scanBasePackages = {
+		"com.fitnessbuddyapi",
+		"com.fitnessbuddy.amqp",
+		}
+)
 @EnableEurekaClient
 @EnableFeignClients(
 		basePackages = "com.fitnessbuddy.clients"

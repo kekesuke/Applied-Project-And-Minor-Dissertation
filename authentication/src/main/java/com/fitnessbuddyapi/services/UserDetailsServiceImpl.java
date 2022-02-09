@@ -1,8 +1,8 @@
 package com.fitnessbuddyapi.services;
 
+import com.fitnessbuddy.amqp.RabbitMQMessageProducer;
 import com.fitnessbuddy.clients.fraud.FraudClient;
 import com.fitnessbuddy.clients.fraud.response.FraudCheckResponse;
-import com.fitnessbuddy.clients.notification.NotificationClient;
 import com.fitnessbuddy.clients.notification.response.NotificationRequest;
 import com.fitnessbuddyapi.models.ERole;
 import com.fitnessbuddyapi.models.Role;
@@ -51,7 +51,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	private final FraudClient fraudClient;
 
-	private final NotificationClient notificationClient;
+	private final RabbitMQMessageProducer rabbitMQMessageProducer;
 
 	@Override
 	@Transactional
@@ -101,14 +101,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("The owner of that email is banned. (CODE 403)\n");
 		}
 
-		notificationClient.sendNotification(
-				new NotificationRequest(
-						user.getId(),
-						user.getEmail(),
-						String.format("Hi %s, welcome to Fitnessbuddy.",
-								user.getUsername())
-				)
+		NotificationRequest notificationRequest = new NotificationRequest(
+				user.getId(),
+				user.getEmail(),
+				String.format("Hi %s, welcome to Fitnessbuddy.",
+						user.getUsername())
 		);
+
+		rabbitMQMessageProducer.publish(
+				notificationRequest,
+				"internal.exchange",
+				"internal.notifications.routing-key"
+		);
+
 		return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
 
 	}

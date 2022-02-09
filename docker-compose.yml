@@ -14,6 +14,7 @@ services:
     networks:
       - mysql
     restart: unless-stopped
+
   adminer:
     container_name: adminer
     image: adminer:latest
@@ -57,6 +58,7 @@ services:
     networks:
       - postgres
     restart: unless-stopped
+
   zipkin:
     image: openzipkin/zipkin
     container_name: zipkin
@@ -75,6 +77,91 @@ services:
       - "9411:9411"
       # Uncomment if you set SCRIBE_ENABLED=true
       # - 9410:9410
+    networks:
+      - backend
+
+  rabbitmq:
+    image: rabbitmq:3.9.11-management-alpine
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672" #management port we can use the management console
+    networks:
+      - backend
+
+  eureka-server:
+    image: kekesuke/eureka-server:latest
+    container_name: eureka-server
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - backend
+    ports:
+      - "8761:8761"
+    depends_on:
+      - zipkin
+
+  api-gateway:
+    image: kekesuke/api-gateway:latest
+    container_name: api-gateway
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - backend
+    ports:
+      - "8084:8084"
+    depends_on:
+      - zipkin
+      - eureka-server
+
+  authentication:
+    image: kekesuke/authentication:latest
+    container_name: authentication
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - mysql
+      - backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+      - zipkin
+      - eureka-server
+      - rabbitmq
+
+
+  fraud:
+    image: kekesuke/fraud:latest
+    container_name: fraud
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - backend
+      - postgres
+    ports:
+      - "8082:8082"
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres-fraud
+      - rabbitmq
+
+  notification:
+    image: kekesuke/notification:latest
+    container_name: notification
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - backend
+      - postgres
+    ports:
+      - "8083:8083"
+    depends_on:
+      - zipkin
+      - eureka-server
+      - postgres-notifications
+      - rabbitmq
 
 #
 #  pgadmin:
@@ -95,6 +182,8 @@ networks:
   postgres:
     driver: bridge
   mysql:
+    driver: bridge
+  backend:
     driver: bridge
 
 volumes:

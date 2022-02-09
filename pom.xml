@@ -9,15 +9,13 @@
 
     <modules>
       <module>authentication</module>
-        <module>fraud</module>
+      <module>fraud</module>
       <module>eureka-server</module>
-        <module>notification</module>
-        <module>feign-clients</module>
+      <module>notification</module>
+      <module>feign-clients</module>
       <module>api-gateway</module>
+      <module>advanced-message-queues-protocol</module>
     </modules>
-
-    <name>fitnessbuddyservices</name>
-    <url></url>
 
     <properties>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,7 +24,7 @@
       <spring.boot.maven.plugin.version>2.5.7</spring.boot.maven.plugin.version>
       <spring.boot.dependencies.version>2.5.7</spring.boot.dependencies.version>
       <spring.cloud-version>2020.0.3</spring.cloud-version>
-      <image>fitnessbuddy/${project.artifactId}:${project.version}</image>
+      <image>kekesuke/${project.artifactId}:${project.version}</image>
     </properties>
 
     <dependencyManagement>
@@ -84,7 +82,7 @@
             <version>3.1.4</version>
             <configuration>
               <from>
-                <image>eclipse-temurin:17@sha256:2b47a8ea946ce1e5365a1562414ed576e378b7b670cadff3fb98ebecf2890cdc</image>
+                <image>eclipse-temurin:17</image>
                 <platforms>
                   <platform>
                     <architecture>arm64</architecture>
