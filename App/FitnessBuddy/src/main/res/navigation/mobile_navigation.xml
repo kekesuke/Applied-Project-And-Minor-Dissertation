@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.home.HomeFragment"
+        android:label="@string/menu_register"
+        tools:layout="@layout/activity_main" />
+
+    <fragment
+        android:id="@+id/nav_login"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.calories.DietFragment"
+        android:label="@string/menu_login"
+        tools:layout="@layout/activity_login" />
+
+    <fragment
+        android:id="@+id/nav_maps"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.maps.MapsFragment"
+        android:label="@string/menu_maps"
+        tools:layout="@layout/activity_maps" />
+
+    <fragment
+        android:id="@+id/nav_calories"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.maps.MapsFragment"
+        android:label="@string/menu_calories"
+        tools:layout="@layout/activity_calories" />
+
+    <fragment
+        android:id="@+id/nav_diet"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.maps.MapsFragment"
+        android:label="@string/menu_diet"
+        tools:layout="@layout/activity_diet" />
+</navigation>

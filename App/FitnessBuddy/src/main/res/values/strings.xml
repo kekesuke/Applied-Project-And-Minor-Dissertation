@@ -1,0 +1,15 @@
+<resources>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Fitness Buddy</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Work hard</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_register">Register</string>
+    <string name="menu_login">Login</string>
+    <string name="menu_maps">Maps</string>
+    <string name="menu_diet">Diet</string>
+    <string name="menu_calories">Calories tracker</string>
+</resources>

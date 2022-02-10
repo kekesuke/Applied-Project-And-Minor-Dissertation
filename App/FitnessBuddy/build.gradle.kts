@@ -28,6 +28,7 @@ android {
     }
 
 
+
     packagingOptions {
         resources.excludes.add("META-INF/DEPENDENCIES")
         resources.excludes.add("META-INF/LICENSE")
@@ -37,12 +38,21 @@ android {
         resources.excludes.add("META-INF/ASL2.0")
 
     }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.5.0")
-    implementation("com.android.support.appcompat-v7:26.1.0")
+//    implementation("com.android.support.appcompat-v7:26.1.0")
+//    implementation("com.android.support.design:26.1.0")
+    implementation("com.android.support.constraint:constraint-layout-solver:2.0.4")
     implementation("com.google.android.gms:play-services-maps:18.0.2")
     implementation("com.google.android.gms:play-services-location:19.0.1")
     implementation ("com.google.android.material:material:1.5.0")
@@ -60,6 +70,10 @@ dependencies {
     implementation ("androidx.core:core-ktx:1.7.0")
     implementation ("androidx.appcompat:appcompat:1.4.1")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.3")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.3.5")
+    implementation("androidx.navigation:navigation-ui-ktx:2.3.5")
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.3")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
