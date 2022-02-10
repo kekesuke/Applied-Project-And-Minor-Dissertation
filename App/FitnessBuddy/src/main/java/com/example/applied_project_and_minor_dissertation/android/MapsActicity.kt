@@ -28,7 +28,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 //
 
 
-    
+
 /////////////////////////////////////////////////////
 //
 //    private lateinit var binding: ActivityMapsBinding

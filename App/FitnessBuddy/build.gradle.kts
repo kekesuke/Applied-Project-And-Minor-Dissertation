@@ -42,20 +42,23 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.5.0")
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
+    implementation("com.android.support.appcompat-v7:26.1.0")
+    implementation("com.google.android.gms:play-services-maps:18.0.2")
+    implementation("com.google.android.gms:play-services-location:19.0.1")
+    implementation ("com.google.android.material:material:1.5.0")
+    implementation ("com.google.android.gms:play-services-maps:18.0.2")
+    implementation ("com.google.android.gms:play-services-location:19.0.1")//needed for current update location
+
     implementation("io.ktor:ktor-client-core:1.6.6")
     implementation("io.ktor:ktor-client-android:1.6.6")
     implementation("io.ktor:ktor-client-serialization:1.6.6")
     implementation("io.ktor:ktor-client-logging:1.6.6")
+
+    implementation("androidx.appcompat:appcompat:1.4.1")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
-    implementation("com.google.android.gms:play-services-maps:18.0.2")
-    implementation("com.google.android.gms:play-services-location:19.0.1")
     implementation ("androidx.core:core-ktx:1.7.0")
     implementation ("androidx.appcompat:appcompat:1.4.1")
-    implementation ("com.google.android.material:material:1.5.0")
-    implementation ("com.google.android.gms:play-services-maps:18.0.2")
-    implementation ("com.google.android.gms:play-services-location:19.0.1")//needed for current update location
     implementation ("androidx.constraintlayout:constraintlayout:2.1.3")
     testImplementation ("junit:junit:4.13.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.3")
