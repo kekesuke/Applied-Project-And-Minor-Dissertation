@@ -77,7 +77,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(R.layout.marker)
 
         // Construct a PlacesClient
-        Places.initialize(applicationContext, BuildConfig.MAPS_API_KEY)
+       // Places.initialize(applicationContext, BuildConfig.MAPS_API_KEY)
         placesClient = Places.createClient(this)
 
         // Construct a FusedLocationProviderClient.

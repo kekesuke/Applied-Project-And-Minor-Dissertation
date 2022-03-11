@@ -21,7 +21,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.applied_project_and_minor_dissertation.BuildConfig
-import com.example.applied_project_and_minor_dissertation.android.BuildConfig.MAPS_API_KEY
+//import com.example.applied_project_and_minor_dissertation.android.BuildConfig.MAPS_API_KEY
 
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -82,7 +82,7 @@ class MapsActivityCurrentPlace : AppCompatActivity(), OnMapReadyCallback {
 
         // [START_EXCLUDE silent]
         // Construct a PlacesClient
-        Places.initialize(applicationContext, MAPS_API_KEY)
+       // Places.initialize(applicationContext, MAPS_API_KEY)
         placesClient = Places.createClient(this)
 
         // Construct a FusedLocationProviderClient.
