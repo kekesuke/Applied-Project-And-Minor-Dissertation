@@ -1,6 +1,7 @@
 package com.example.applied_project_and_minor_dissertation.android.ui.calories
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.applied_project_and_minor_dissertation.android.databinding.ActivityLoginBinding
+import java.lang.Math.log
+import kotlin.math.ln
 
 class LoginFragment : Fragment() {
 
@@ -38,5 +41,10 @@ class LoginFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun login()
+    {
+        Log.d("TAG", "TESTINNGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
     }
 }

@@ -28,10 +28,10 @@ class HomeFragment : Fragment() {
         _binding = ActivityMainBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.registerEditTextEmail
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
+//        val textView: TextView = binding.registerEditTextEmail
+//        homeViewModel.text.observe(viewLifecycleOwner) {
+//            textView.text = it
+//        }
         return root
     }
 

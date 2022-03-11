@@ -23,7 +23,7 @@ class CaloriesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val galleryViewModel =
-            ViewModelProvider(this).get(DietViewModel::class.java)
+            ViewModelProvider(this)[CaloriesViewModel::class.java]
 
         _binding = ActivityCaloriesBinding.inflate(inflater, container, false)
         val root: View = binding.root
