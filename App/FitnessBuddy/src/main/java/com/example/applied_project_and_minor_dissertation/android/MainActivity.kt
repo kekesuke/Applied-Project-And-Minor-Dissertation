@@ -15,6 +15,7 @@ import com.example.applied_project_and_minor_dissertation.android.ui.calories.Di
 import com.example.applied_project_and_minor_dissertation.android.ui.calories.LoginFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.home.HomeFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.maps.MapFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.register.RegisterFragment
 import com.google.android.material.navigation.NavigationView
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -57,7 +58,7 @@ class MainActivity : AppCompatActivity() {
             it.isChecked = true
             when (it.itemId)
             {
-                R.id.nav_home -> replaceFragment(HomeFragment(), it.title.toString())
+                R.id.nav_home -> replaceFragment(RegisterFragment(), it.title.toString())
                 R.id.nav_login -> replaceFragment(LoginFragment(), it.title.toString())
                 R.id.nav_maps -> replaceFragment(MapFragment(), it.title.toString())
                 R.id.nav_calories -> replaceFragment(CaloriesFragment(), it.title.toString())
