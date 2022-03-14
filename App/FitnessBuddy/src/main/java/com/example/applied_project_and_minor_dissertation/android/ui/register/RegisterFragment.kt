@@ -11,9 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import com.example.applied_project_and_minor_dissertation.android.R
-import com.example.applied_project_and_minor_dissertation.android.Routes
-import com.example.applied_project_and_minor_dissertation.android.User
+import com.example.applied_project_and_minor_dissertation.android.*
 import com.example.applied_project_and_minor_dissertation.android.databinding.ActivityRegisterBinding
 import com.example.applied_project_and_minor_dissertation.android.ui.calories.DietViewModel
 import io.ktor.client.*
@@ -26,6 +24,9 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import kotlin.coroutines.CoroutineContext
 
 val client = HttpClient(Android){
@@ -59,13 +60,20 @@ class RegisterFragment() : Fragment() {
 //        galleryViewModel.text.observe(viewLifecycleOwner) {
 //            textView.text = it
 //        }
-        val root = inflater.inflate(R.layout.activity_register,container,false)
-        val buttonRegister : Button = root.findViewById(R.id.register_register_button)
-        buttonRegister.setOnClickListener{
-           Log.d("tag", "Called 1")
-            scope.launch(Dispatchers.IO) {
-                Register()
-            }
+
+            val root = inflater.inflate(R.layout.activity_register,container,false)
+            val buttonRegister : Button = root.findViewById(R.id.register_register_button)
+            buttonRegister.setOnClickListener{
+                val username1 = register_editText_username.text.toString()
+                val email1 = register_editText_email.text.toString()
+                val password1 = register_editText_password.text.toString()
+                val user = User(
+                    username = username1,
+                    email = email1,
+                    password = password1
+                )
+                addUser(user){
+                }
         }
         return root
     }
@@ -75,43 +83,21 @@ class RegisterFragment() : Fragment() {
         _binding = null
     }
 
-    private suspend fun Register()
-    {
-        Log.d("TAG", "TESTINNGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG")
 
-            val username = register_editText_username.text.toString()
-            val email = register_editText_email.text.toString()
-            val password = register_editText_password.text.toString()
-
-            Log.d("MainActivity", "username is: $username")
-            Log.d("MainActivity", "Email is: $email")
-
-            Log.d("MainActivity", "password is: $password")
-            sendPost(username,email,password)
-                lifecycleScope.launch {
-
-                val result = sendPost(username, email, password)
-                onResult(result);
-            }
-
-    }
 
     ///////////////////////////////////////
-    suspend fun sendPost(username: String, email: String, password: String) {
-        val response: HttpResponse = com.example.applied_project_and_minor_dissertation.android.client.post(
-            Routes.HttpRoutes.REGISTER
-        ) {
-            contentType(ContentType.Application.Json)
-            body = User(username, email, password)
-        }
-
-        val stringBody: String = response.receive();
-        Log.d("MainActivity", "HTTP response: $stringBody");
-
-    }
-
-    fun onResult(result: Unit) {
-        Log.d("MainActivity", "result:  $result.toString()")
-
+    fun addUser(userData: User, onResult: (User?) -> Unit){
+        val retrofit = RetrofitHelper.buildService(AuthApi::class.java)
+        retrofit.addUser(userData).enqueue(
+            object : Callback<User> {
+                override fun onFailure(call: Call<User>, t: Throwable) {
+                    onResult(null)
+                }
+                override fun onResponse( call: Call<User>,  response: Response<User>) {
+                    val addedUser = response.body()
+                    onResult(addedUser)
+                }
+            }
+        )
     }
 }
