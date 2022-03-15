@@ -42,8 +42,6 @@ class RegisterFragment() : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
-    val job = Job()
-    val scope = CoroutineScope(Dispatchers.Main + job)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -94,8 +92,18 @@ class RegisterFragment() : Fragment() {
                     onResult(null)
                 }
                 override fun onResponse( call: Call<User>,  response: Response<User>) {
-                    val addedUser = response.body()
-                    onResult(addedUser)
+                    if(response.isSuccessful){
+                        val addedUser = response.body()
+                        onResult(addedUser)
+                    } else {
+                        Log.d("Error", response.message().toString())
+                        Log.d("Error", response.code().toString())
+                        Log.d("Error", response.body().toString())
+                        Log.d("Error", response.errorBody().toString())
+                        Log.d("Error", response.raw().toString())
+                    }
+
+
                 }
             }
         )

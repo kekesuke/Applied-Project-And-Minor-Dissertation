@@ -11,4 +11,8 @@ interface AuthApi {
     @POST("api/auth/signup/")
     fun addUser(@Body userData: User): Call<User>
 
+    @Headers("Content-Type: application/json")
+    @POST("api/auth/signin/")
+    fun loginUser(@Body userLogin: UserLogin): Call<UserLogin>
+
 }
