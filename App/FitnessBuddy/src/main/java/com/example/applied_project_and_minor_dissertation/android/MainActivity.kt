@@ -1,6 +1,7 @@
 package com.example.applied_project_and_minor_dissertation.android
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -13,7 +14,6 @@ import com.example.applied_project_and_minor_dissertation.android.Routes.HttpRou
 import com.example.applied_project_and_minor_dissertation.android.ui.calories.CaloriesFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.calories.DietFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.calories.LoginFragment
-import com.example.applied_project_and_minor_dissertation.android.ui.home.HomeFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.maps.MapFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.register.RegisterFragment
 import com.google.android.material.navigation.NavigationView
@@ -25,6 +25,7 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import misc.User
 
 
 val client = HttpClient(Android) {
@@ -42,6 +43,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         ////////////////////////////////////////////////////////// edit
 
+        val prefs: SharedPreferences = baseContext.getSharedPreferences("userToken", MODE_PRIVATE)
+        val token = prefs.getString("user_toke", null)
+        if(token == null)
+        {
+            Log.d("tokken", "this $token")
+        }
+
+
+
+        val session : SessionManager = SessionManager(applicationContext)
+        Log.d("tokken", session.isLoggedIn().toString())
+
 
         val toolbar : Toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -54,17 +67,33 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        navView.setNavigationItemSelectedListener {
-            it.isChecked = true
-            when (it.itemId)
-            {
-                R.id.nav_home -> replaceFragment(RegisterFragment(), it.title.toString())
-                R.id.nav_login -> replaceFragment(LoginFragment(), it.title.toString())
-                R.id.nav_maps -> replaceFragment(MapFragment(), it.title.toString())
-                R.id.nav_calories -> replaceFragment(CaloriesFragment(), it.title.toString())
-                R.id.nav_diet -> replaceFragment(DietFragment(), it.title.toString())
+        if(session.isLoggedIn()) {
+            navView.setNavigationItemSelectedListener {
+                it.isChecked = true
+                when (it.itemId) {
+
+                    R.id.nav_home -> replaceFragment(RegisterFragment(), it.title.toString())
+                    R.id.nav_login -> replaceFragment(LoginFragment(), it.title.toString())
+                    R.id.nav_maps -> replaceFragment(MapFragment(), it.title.toString())
+                    R.id.nav_calories -> replaceFragment(CaloriesFragment(), it.title.toString())
+                    R.id.nav_diet -> replaceFragment(DietFragment(), it.title.toString())
+                }
+                true
             }
-            true
+        }
+        else{
+            navView.setNavigationItemSelectedListener {
+                it.isChecked = true
+                when (it.itemId) {
+
+                    R.id.nav_home -> replaceFragment(RegisterFragment(), it.title.toString())
+                    R.id.nav_login -> replaceFragment(LoginFragment(), "Login")
+                    R.id.nav_maps -> replaceFragment(LoginFragment(), "Login")
+                    R.id.nav_calories -> replaceFragment(LoginFragment(), "Login")
+                    R.id.nav_diet -> replaceFragment(LoginFragment(), "Login")
+                }
+                true
+            }
         }
 
 //////////////////////////////////////////////////////////edit

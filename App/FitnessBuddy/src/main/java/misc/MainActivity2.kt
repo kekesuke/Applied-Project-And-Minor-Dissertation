@@ -1,4 +1,4 @@
-package com.example.applied_project_and_minor_dissertation.android
+package misc
 
 import android.os.Bundle
 import android.view.Menu

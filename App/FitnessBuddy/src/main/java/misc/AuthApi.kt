@@ -1,4 +1,4 @@
-package com.example.applied_project_and_minor_dissertation.android
+package misc
 
 import retrofit2.Call
 import retrofit2.http.Body
