@@ -99,6 +99,7 @@ class LoginFragment : Fragment(), MyFrag.MyFragInterace{
                         Log.d("testing" , response.body()!!.username)
                         Log.d("testing" ,response.body()!!.email.toString()!!)
 
+
                         // get user data from session
 
                         // get user data from session

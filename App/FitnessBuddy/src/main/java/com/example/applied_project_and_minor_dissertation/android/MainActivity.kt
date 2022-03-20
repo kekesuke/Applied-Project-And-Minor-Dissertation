@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
 
 
 
+
+
         val session : SessionManager = SessionManager(applicationContext)
         Log.d("tokken", session.isLoggedIn().toString())
 
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        if(session.isLoggedIn()) {
+        //if(session.isLoggedIn()) {
             navView.setNavigationItemSelectedListener {
                 it.isChecked = true
                 when (it.itemId) {
@@ -80,9 +82,9 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
-        }
-        else{
-            navView.setNavigationItemSelectedListener {
+       // }
+        //else{
+            /*navView.setNavigationItemSelectedListener {
                 it.isChecked = true
                 when (it.itemId) {
 
@@ -93,8 +95,8 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_diet -> replaceFragment(LoginFragment(), "Login")
                 }
                 true
-            }
-        }
+            }*/
+       // }
 
 //////////////////////////////////////////////////////////edit
 
