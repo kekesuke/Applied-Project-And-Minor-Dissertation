@@ -6,9 +6,9 @@ import androidx.lifecycle.ViewModel
 
 class CaloriesViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "????"
-    }
-
-    val text: LiveData<String> = _text
+//    private val _text = MutableLiveData<String>().apply {
+//        value = "????"
+//    }
+//
+//    val text: LiveData<String> = _text
 }

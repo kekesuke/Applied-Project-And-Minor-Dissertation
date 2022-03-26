@@ -62,6 +62,7 @@ dependencies {
     implementation ("com.google.android.gms:play-services-location:19.0.1")//needed for current update location
     implementation ("com.google.android.libraries.places:places:2.5.0")//Maps placing
     implementation ("com.vmadalin:easypermissions-ktx:1.0.0")//steps
+    implementation ("com.mikhaellopez:circularprogressbar:3.1.0")//display steps
 
     implementation("io.ktor:ktor-client-core:1.6.6")
     implementation("io.ktor:ktor-client-android:1.6.6")
