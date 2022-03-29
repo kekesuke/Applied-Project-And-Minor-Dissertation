@@ -38,6 +38,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
@@ -55,14 +56,19 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private static final int REQUEST_CODE = 101;
     SupportMapFragment mapFragment;//new
     SearchView searchView;//new
-    AutocompleteSupportFragment autocompleteFragment;//new
+    //AutocompleteSupportFragment autocompleteFragment;//new
+    private PlacesClient placesClient;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!Places.isInitialized()) {
-            Places.initialize(getActivity().getApplicationContext(), getString(R.string.google_maps_key));
+            Places.initialize(getActivity(), getString(R.string.google_maps_key));
         }
+
+//        Places.initialize(getActivity().getApplicationContext(), getString(R.string.google_maps_key));
+//        placesClient = Places.createClient(getActivity());
+
     }
 
     @Nullable
@@ -70,51 +76,20 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.activity_maps, container, false);
+        /*
+        // Initialize the AutocompleteSupportFragment.
+        autocompleteFragment = (AutocompleteSupportFragment)getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
 
-
-//        // Initialize the AutocompleteSupportFragment.
-//        autocompleteFragment = (AutocompleteSupportFragment)getChildFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-//
-//        // Specify the types of place data to return.
-//        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME));
-//
-//        // Set up a PlaceSelectionListener to handle the response.
-//        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-//            @Override
-//            public void onPlaceSelected(@NonNull Place place) {
-//                // TODO: Get info about the selected place.
-//                Log.i("onPlaceSelected", "Place: " + place.getName() + ", " + place.getId());
-//                String location = place.getName();
-//                List<Address> addressList = null;
-//
-//                if (location != null || !location.equals("")) {
-//                    Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
-//                    try {
-//                        addressList = geocoder.getFromLocationName(location, 1);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    Address address = addressList.get(0);
-//                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-//                    googleMap.addMarker(new MarkerOptions().position(latLng).title((location)));
-//                    googleMap.animateCamera((CameraUpdateFactory.newLatLngZoom(latLng, 5)));
-//               }
-//            }
-//
-//            @Override
-//            public void onError(@NonNull Status status) {
-//                // TODO: Handle the error.
-//                Log.i("onError", "An error occurred: " + status);
-//            }
-//        });
-
-        searchView = root.findViewById(R.id.sv_location);
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
-            public boolean onQueryTextSubmit(String s) {
-                String location = searchView.getQuery().toString();
+            public void onPlaceSelected(@NonNull Place place) {
+                // TODO: Get info about the selected place.
+                Log.i("onPlaceSelected", "Place: " + place.getName() + ", " + place.getId());
+                String location = place.getName();
                 List<Address> addressList = null;
 
                 if (location != null || !location.equals("")) {
@@ -127,8 +102,44 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                     Address address = addressList.get(0);
                     LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
                     googleMap.addMarker(new MarkerOptions().position(latLng).title((location)));
-                    googleMap.animateCamera((CameraUpdateFactory.newLatLngZoom(latLng, 10)));
+                    googleMap.animateCamera((CameraUpdateFactory.newLatLngZoom(latLng, 5)));
+               }
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                // TODO: Handle the error.
+                Log.i("onError", "An error occurred: " + status);
+            }
+        });*/
+
+        searchView = root.findViewById(R.id.sv_location);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                String location = searchView.getQuery().toString();
+                List<Address> addressList = null;
+
+                try {
+                    if (location != null || !location.equals("")) {
+                        Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
+                        try {
+                            addressList = geocoder.getFromLocationName(location, 1);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        Address address = addressList.get(0);
+                        LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                        googleMap.addMarker(new MarkerOptions().position(latLng).title((location)));
+                        googleMap.animateCamera((CameraUpdateFactory.newLatLngZoom(latLng, 10)));
+                    }
+
                 }
+                catch (Exception e) {
+                    Toast.makeText(requireContext(), "Couldn't match the location", Toast.LENGTH_SHORT).show();
+                }
+
                 return false;
             }
 
@@ -141,17 +152,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         });
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
-        fetchLastLocation();
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.map);
         supportMapFragment.getMapAsync(this);
+        fetchLastLocation();
+
         return root;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 
     @Override
@@ -174,9 +186,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 UpdateCurrentLocation();
                 Toast.makeText(getContext(), currentLocation.getLatitude()
                         + "" + currentLocation.getLongitude(), Toast.LENGTH_SHORT).show();
-                SupportMapFragment supportMapFragment = (SupportMapFragment)
-                        getChildFragmentManager().findFragmentById(R.id.map);
-                supportMapFragment.getMapAsync(this);
+
             }
         });
     }
@@ -193,7 +203,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        googleMap.setMyLocationEnabled(true);
+
+        googleMap.setMyLocationEnabled(true);//current location button
     }
 
     private void UpdateCurrentLocation() {
