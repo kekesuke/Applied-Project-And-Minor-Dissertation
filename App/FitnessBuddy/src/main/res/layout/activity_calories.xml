@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.calories.CaloriesFragment">
-
-    <!--    android:layout_marginStart="30dp"-->
-    <!--    android:layout_marginTop="30dp"-->
-    <!--    android:layout_centerInParent="true"-->
+    tools:context=".ui.step-counter.CaloriesFragment">
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
         android:id="@+id/circularProgressBar"
@@ -24,7 +20,7 @@
         android:layout_marginBottom="327dp"
         app:cpb_background_progressbar_color="#F2F2"
         app:cpb_background_progressbar_width="15dp"
-        app:cpb_progress_max="5000"
+        app:cpb_progress_max="10000"
         app:cpb_progressbar_color="#F44336"
         app:cpb_progressbar_width="14dp"
         app:cpb_round_border="true"
@@ -56,7 +52,7 @@
         android:layout_centerInParent="true"
         android:layout_marginEnd="71dp"
         android:layout_marginBottom="-54dp"
-        android:text="/5000"
+        android:text="/10000"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="40sp"

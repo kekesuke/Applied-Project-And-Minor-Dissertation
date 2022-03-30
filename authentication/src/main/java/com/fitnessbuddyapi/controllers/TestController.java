@@ -15,7 +15,7 @@ public class TestController {
 		return "Public Content.";
 	}
 	
-	@GetMapping("/user")
+	@GetMapping("/update-user")
 	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 	public String userAccess() {
 		return "User Content.";

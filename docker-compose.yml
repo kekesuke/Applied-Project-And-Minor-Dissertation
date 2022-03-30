@@ -43,6 +43,22 @@ services:
       - postgres
     restart: unless-stopped
 
+  postgres-diet:
+      container_name: postgres-diet
+      image: postgres
+      environment:
+        POSTGRES_USER: admin
+        POSTGRES_DB: "diet"
+        POSTGRES_PASSWORD: password
+        PGDATA: /data/postgres
+      volumes:
+        - postgres-diet:/data/postgres
+      ports:
+        - "5434:5432"
+      networks:
+        - postgres
+      restart: unless-stopped
+
   postgres-notifications:
     container_name: postgres-notifications
     image: postgres
@@ -191,3 +207,4 @@ volumes:
   postgres-notifications:
   mysql:
   admininer:
+  postgres-diet:

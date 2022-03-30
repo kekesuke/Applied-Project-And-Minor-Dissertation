@@ -11,7 +11,7 @@
     <string name="menu_login">Login</string>
     <string name="menu_maps">Maps</string>
     <string name="menu_diet">Diet</string>
-    <string name="menu_calories">Calories tracker</string>
+    <string name="menu_steps">Steps tracker</string>
 
     <string name="app_name">Current Place Details</string>
     <string name="title_activity_maps">Current Place Details</string>

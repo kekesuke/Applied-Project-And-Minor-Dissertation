@@ -16,6 +16,7 @@
       <module>api-gateway</module>
       <module>advanced-message-queues-protocol</module>
       <module>stomp</module>
+      <module>diet-tracker</module>
     </modules>
 
     <properties>

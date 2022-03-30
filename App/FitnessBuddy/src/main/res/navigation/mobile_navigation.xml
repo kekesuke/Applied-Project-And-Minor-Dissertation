@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/nav_login"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.calories.LoginFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.step-counter.LoginFragment"
         android:label="@string/menu_login"
         tools:layout="@layout/activity_login" />
 
@@ -25,13 +25,13 @@
 
     <fragment
         android:id="@+id/nav_calories"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.calories.CaloriesFragment"
-        android:label="@string/menu_calories"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.step-counter.CaloriesFragment"
+        android:label="@string/menu_steps"
         tools:layout="@layout/activity_calories" />
 
     <fragment
         android:id="@+id/nav_diet"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.calories.DietFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.step-counter.DietFragment"
         android:label="@string/menu_diet"
         tools:layout="@layout/activity_diet" />
 </navigation>

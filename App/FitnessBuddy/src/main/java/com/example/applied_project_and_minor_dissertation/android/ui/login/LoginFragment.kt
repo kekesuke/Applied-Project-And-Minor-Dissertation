@@ -1,4 +1,4 @@
-package com.example.applied_project_and_minor_dissertation.android.ui.calories
+package com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`
 
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences

@@ -11,9 +11,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.applied_project_and_minor_dissertation.android.Routes.HttpRoutes.REGISTER
-import com.example.applied_project_and_minor_dissertation.android.ui.calories.CaloriesFragment
-import com.example.applied_project_and_minor_dissertation.android.ui.calories.DietFragment
-import com.example.applied_project_and_minor_dissertation.android.ui.calories.LoginFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.StepsFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.DietFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.LoginFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.maps.MapFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.register.RegisterFragment
 import com.google.android.material.navigation.NavigationView
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_home -> replaceFragment(RegisterFragment(), it.title.toString())
                     R.id.nav_login -> replaceFragment(LoginFragment(), it.title.toString())
                     R.id.nav_maps -> replaceFragment(MapFragment(), it.title.toString())
-                    R.id.nav_calories -> replaceFragment(CaloriesFragment(), it.title.toString())
+                    R.id.nav_calories -> replaceFragment(StepsFragment(), it.title.toString())
                     R.id.nav_diet -> replaceFragment(DietFragment(), it.title.toString())
                 }
                 true
