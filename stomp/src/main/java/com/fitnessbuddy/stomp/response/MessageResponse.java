@@ -1,4 +1,4 @@
-package com.fitnessbuddyapi.payload.response;
+package com.fitnessbuddy.stomp.response;
 
 public class MessageResponse {
     private String message;

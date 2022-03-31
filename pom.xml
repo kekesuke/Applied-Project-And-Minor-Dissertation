@@ -15,8 +15,8 @@
       <module>feign-clients</module>
       <module>api-gateway</module>
       <module>advanced-message-queues-protocol</module>
-      <module>stomp</module>
       <module>diet-tracker</module>
+      <module>stomp</module>
     </modules>
 
     <properties>
