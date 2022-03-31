@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.step-counter.CaloriesFragment">
+    android:background="#0abec4"
+    >
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
         android:id="@+id/circularProgressBar"

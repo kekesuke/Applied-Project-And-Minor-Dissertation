@@ -28,5 +28,15 @@
     <string name="rotation">Rotation:</string>
     <string name="drag_melbourne">Drag Melbourne</string>
 
+<!--    spinner-->
+    <string name="selected_item">Selected item:</string>
+    <string name="foodType">Food</string>
+    <string name="foodTree">Items</string>
+    <string-array name="Foods">
+        <item>Vegetables</item>
+        <item>Meat</item>
+        <item>Fruit</item>
+    </string-array>
+
 
 </resources>
