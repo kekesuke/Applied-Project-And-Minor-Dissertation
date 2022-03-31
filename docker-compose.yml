@@ -179,6 +179,22 @@ services:
       - postgres-notifications
       - rabbitmq
 
+#  stomp:
+#    image: kekesuke/stomp:latest
+ #   container_name: stomp
+ #   environment:
+ #     - SPRING_PROFILES_ACTIVE=docker
+ #   networks:
+   #   - backend
+  #    - postgres
+  #  ports:
+  #    - "8084:8084"
+  #  depends_on:
+   #   - zipkin
+   #   - eureka-server
+   #   - postgres-notifications
+    #  - rabbitmq
+
 #
 #  pgadmin:
 #    container_name: pgadmin

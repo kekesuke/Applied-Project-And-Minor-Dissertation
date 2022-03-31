@@ -1,0 +1,25 @@
+server:
+  port: 8084
+spring:
+  application:
+    name: stomp
+  datasource:
+    username: admin
+    password: password
+    url: jdbc:mysql://mysql:3306/fitnessbuddy?useSSL=false&createDatabaseIfNotExist=true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  zipkin:
+    base-url: http://zipkin:9411
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
