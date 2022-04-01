@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/nav_login"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.step-counter.LoginFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.login.LoginFragment"
         android:label="@string/menu_login"
         tools:layout="@layout/activity_login" />
 
@@ -25,13 +25,25 @@
 
     <fragment
         android:id="@+id/nav_calories"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.step-counter.CaloriesFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.CaloriesFragment"
         android:label="@string/menu_steps"
         tools:layout="@layout/activity_calories" />
 
     <fragment
         android:id="@+id/nav_diet"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.step-counter.DietFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.DietFragment"
         android:label="@string/menu_diet"
         tools:layout="@layout/activity_diet" />
+
+    <fragment
+        android:id="@+id/nav_diary"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.DietFragment"
+        android:label="@string/menu_diary"
+        tools:layout="@layout/activity_diary" />
+
+    <fragment
+        android:id="@+id/nav_userProfile"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.DietFragment"
+        android:label="@string/menu_userProfile"
+        tools:layout="@layout/activity_diary" />
 </navigation>

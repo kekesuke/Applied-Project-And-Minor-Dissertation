@@ -26,5 +26,13 @@
             android:id="@+id/nav_diet"
             android:icon="@drawable/ic_food"
             android:title="@string/menu_diet" />
+        <item
+            android:id="@+id/nav_diary"
+            android:icon="@drawable/ic_diary"
+            android:title="@string/menu_diary" />
+        <item
+            android:id="@+id/nav_userProfile"
+            android:icon="@drawable/ic_user_profile"
+            android:title="@string/menu_userProfile" />
     </group>
 </menu>

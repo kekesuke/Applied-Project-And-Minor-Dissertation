@@ -1,8 +1,8 @@
-package com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`
+package com.example.applied_project_and_minor_dissertation.android.ui.diary
 
 import androidx.lifecycle.ViewModel
 
-class BmiViewModel : ViewModel() {
+class DiaryViewModel : ViewModel() {
 
 //    private val _text = MutableLiveData<String>().apply {
 //        value = "????"

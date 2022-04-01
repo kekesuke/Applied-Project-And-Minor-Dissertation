@@ -11,5 +11,12 @@
         <item name="android:textColor">#0ac44e</item>
         <item name="android:textSize">20sp</item>
     </style>
+    <style name="Text">
+        <item name="android:textColor">#ff1100</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <style name="ButtonColour" parent="ThemeOverlay.AppCompat">
+        <item name="backgroundTint">#e8b8b5</item>
+    </style>
 
 </resources>

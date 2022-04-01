@@ -1,15 +1,28 @@
-package com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`
+package com.example.applied_project_and_minor_dissertation.android.ui.stepCounter
 
+import android.Manifest
+import android.app.Activity
+import android.content.Context
+import android.content.pm.PackageManager
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.applied_project_and_minor_dissertation.android.R
+import kotlinx.android.synthetic.main.activity_calories.*
 
 
-class BmiFragment : Fragment() {
+class StepsFragment : Fragment(), SensorEventListener {
 
     private var sensorManager: SensorManager? = null
 
@@ -27,7 +40,7 @@ class BmiFragment : Fragment() {
         return inflater.inflate(R.layout.activity_calories, container, false)
     }
 
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //check if permission isn't already granted, request the permission
         if (isPermissionGranted()) {
@@ -129,5 +142,5 @@ class BmiFragment : Fragment() {
     }
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
         println("onAccuracyChanged: Sensor: $sensor; accuracy: $accuracy")
-    }*/
+    }
 }

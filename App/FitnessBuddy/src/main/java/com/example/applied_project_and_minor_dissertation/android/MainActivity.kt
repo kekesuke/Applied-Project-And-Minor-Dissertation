@@ -11,11 +11,13 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.applied_project_and_minor_dissertation.android.Routes.HttpRoutes.REGISTER
-import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.StepsFragment
-import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.DietFragment
-import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.LoginFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.diary.DiaryFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.StepsFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.diet.DietFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.login.LoginFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.maps.MapFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.register.RegisterFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.userProfile.UserProfileFragment
 import com.google.android.material.navigation.NavigationView
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -41,7 +43,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ////////////////////////////////////////////////////////// edit
 
         val prefs: SharedPreferences = baseContext.getSharedPreferences("userToken", MODE_PRIVATE)
         val token = prefs.getString("user_toke", null)
@@ -79,6 +80,8 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_maps -> replaceFragment(MapFragment(), it.title.toString())
                     R.id.nav_calories -> replaceFragment(StepsFragment(), it.title.toString())
                     R.id.nav_diet -> replaceFragment(DietFragment(), it.title.toString())
+                    R.id.nav_diary -> replaceFragment(DiaryFragment(), it.title.toString())
+                    R.id.nav_userProfile -> replaceFragment(UserProfileFragment(), it.title.toString())
                 }
                 true
             }
@@ -154,7 +157,6 @@ class MainActivity : AppCompatActivity() {
 
             return super.onOptionsItemSelected(item)
         }
-    ///////////////////////////////////////
     suspend fun sendPost(username: String, email: String, password: String) {
         val response: HttpResponse = client.post(REGISTER) {
             contentType(ContentType.Application.Json)

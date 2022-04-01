@@ -1,4 +1,4 @@
-package com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`
+package com.example.applied_project_and_minor_dissertation.android.ui.stepCounter
 
 import androidx.lifecycle.ViewModel
 
