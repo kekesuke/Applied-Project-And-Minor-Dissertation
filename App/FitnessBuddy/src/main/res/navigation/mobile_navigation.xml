@@ -19,31 +19,43 @@
 
     <fragment
         android:id="@+id/nav_maps"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.maps.MapsFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.maps.MapFragment"
         android:label="@string/menu_maps"
         tools:layout="@layout/activity_maps" />
 
     <fragment
         android:id="@+id/nav_calories"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.CaloriesFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.StepsFragment"
         android:label="@string/menu_steps"
         tools:layout="@layout/activity_calories" />
 
     <fragment
         android:id="@+id/nav_diet"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.DietFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.diet.DietFragment"
         android:label="@string/menu_diet"
         tools:layout="@layout/activity_diet" />
 
     <fragment
         android:id="@+id/nav_diary"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.DietFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.diary.DiaryFragment"
         android:label="@string/menu_diary"
         tools:layout="@layout/activity_diary" />
 
     <fragment
         android:id="@+id/nav_userProfile"
-        android:name="com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.DietFragment"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.userProfile.UserProfileFragment"
         android:label="@string/menu_userProfile"
         tools:layout="@layout/activity_diary" />
+
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.chat.ChatFragment"
+        android:label="@string/menu_chat"
+        tools:layout="@layout/activity_chat" />
+
+    <fragment
+        android:id="@+id/nav_contactsList"
+        android:name="com.example.applied_project_and_minor_dissertation.android.ui.contactList.ContactListFragment"
+        android:label="@string/menu_contactList"
+        tools:layout="@layout/activity_contacts_list" />
 </navigation>

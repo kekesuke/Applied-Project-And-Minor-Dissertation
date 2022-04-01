@@ -11,6 +11,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.applied_project_and_minor_dissertation.android.Routes.HttpRoutes.REGISTER
+import com.example.applied_project_and_minor_dissertation.android.ui.chat.ChatFragment
+import com.example.applied_project_and_minor_dissertation.android.ui.contactList.ContactListFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.diary.DiaryFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.stepCounter.StepsFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.diet.DietFragment
@@ -82,6 +84,8 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_diet -> replaceFragment(DietFragment(), it.title.toString())
                     R.id.nav_diary -> replaceFragment(DiaryFragment(), it.title.toString())
                     R.id.nav_userProfile -> replaceFragment(UserProfileFragment(), it.title.toString())
+                    R.id.nav_chat -> replaceFragment(ChatFragment(), it.title.toString())
+                    R.id.nav_contactList -> replaceFragment(ContactListFragment(), it.title.toString())
                 }
                 true
             }

@@ -1,4 +1,4 @@
-package com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`
+package com.example.applied_project_and_minor_dissertation.android.ui.contactList
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -19,7 +19,7 @@ class ContactListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view:View = inflater.inflate(R.layout.activity_contacts, container, false)
+        val view:View = inflater.inflate(R.layout.activity_contacts_list, container, false)
 
         recyclerView = view.findViewById(R.id.contacts_recyclerview)
         if(recyclerView != null){

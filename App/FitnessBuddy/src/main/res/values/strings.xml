@@ -6,7 +6,7 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Work hard</string>
     <string name="action_settings">Settings</string>
-
+<!--    Fragment names-->
     <string name="menu_register">Register</string>
     <string name="menu_login">Login</string>
     <string name="menu_maps">Maps</string>
@@ -14,6 +14,8 @@
     <string name="menu_diary">Diary</string>
     <string name="menu_steps">Steps tracker</string>
     <string name="menu_userProfile">User Profile</string>
+    <string name="menu_chat">Chats</string>
+    <string name="menu_contactList">Contact List</string>
 
     <string name="app_name">Current Place Details</string>
     <string name="title_activity_maps">Current Place Details</string>

@@ -34,5 +34,13 @@
             android:id="@+id/nav_userProfile"
             android:icon="@drawable/ic_user_profile"
             android:title="@string/menu_userProfile" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_chat"
+            android:title="@string/menu_userProfile" />
+        <item
+            android:id="@+id/nav_contactList"
+            android:icon="@drawable/ic_contact_list"
+            android:title="@string/menu_userProfile" />
     </group>
 </menu>
