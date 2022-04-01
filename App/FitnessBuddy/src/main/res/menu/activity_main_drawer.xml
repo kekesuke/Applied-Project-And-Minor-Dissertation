@@ -30,5 +30,9 @@
             android:id="@+id/nav_contactList"
             android:icon="@drawable/ic_home"
             android:title="Contact List" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_home"
+            android:title="Contact List" />
     </group>
 </menu>
