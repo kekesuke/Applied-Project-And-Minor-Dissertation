@@ -26,5 +26,9 @@
             android:id="@+id/nav_diet"
             android:icon="@drawable/ic_food"
             android:title="@string/menu_diet" />
+        <item
+            android:id="@+id/nav_contactList"
+            android:icon="@drawable/ic_home"
+            android:title="Contact List" />
     </group>
 </menu>

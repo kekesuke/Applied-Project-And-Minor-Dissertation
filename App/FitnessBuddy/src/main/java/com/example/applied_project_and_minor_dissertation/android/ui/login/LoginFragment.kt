@@ -1,6 +1,7 @@
 package com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`
 
 import android.content.Context.MODE_PRIVATE
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -52,6 +53,8 @@ class LoginFragment : Fragment(), MyFrag.MyFragInterace{
         buttonLogut.setOnClickListener{
             val session = getInstance()
             session.logout()
+            val myIntent = Intent(context, MainActivity::class.java)
+            this@LoginFragment.startActivity(myIntent)
         }
         return root
     }
@@ -116,6 +119,12 @@ class LoginFragment : Fragment(), MyFrag.MyFragInterace{
                         val email = user1!![session!!.EMAIL]
 
                         Log.d("please work", "$name $email")
+
+                        if(response.body()!!.accessToken != null)
+                        {
+                            val myIntent = Intent(context, MainActivity::class.java)
+                            this@LoginFragment.startActivity(myIntent)
+                        }
 
 
                     } else {

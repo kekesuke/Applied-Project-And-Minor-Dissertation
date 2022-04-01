@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.applied_project_and_minor_dissertation.android.Routes.HttpRoutes.REGISTER
+import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.ContactListFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.StepsFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.DietFragment
 import com.example.applied_project_and_minor_dissertation.android.ui.`step-counter`.LoginFragment
@@ -69,22 +70,22 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        //if(session.isLoggedIn()) {
+        if(session.isLoggedIn()) {
             navView.setNavigationItemSelectedListener {
                 it.isChecked = true
                 when (it.itemId) {
-
                     R.id.nav_home -> replaceFragment(RegisterFragment(), it.title.toString())
                     R.id.nav_login -> replaceFragment(LoginFragment(), it.title.toString())
                     R.id.nav_maps -> replaceFragment(MapFragment(), it.title.toString())
                     R.id.nav_calories -> replaceFragment(StepsFragment(), it.title.toString())
                     R.id.nav_diet -> replaceFragment(DietFragment(), it.title.toString())
+                    R.id.nav_contactList -> replaceFragment(ContactListFragment(), it.title.toString())
                 }
                 true
             }
-       // }
-        //else{
-            /*navView.setNavigationItemSelectedListener {
+        }
+        else{
+            navView.setNavigationItemSelectedListener {
                 it.isChecked = true
                 when (it.itemId) {
 
@@ -93,10 +94,11 @@ class MainActivity : AppCompatActivity() {
                     R.id.nav_maps -> replaceFragment(LoginFragment(), "Login")
                     R.id.nav_calories -> replaceFragment(LoginFragment(), "Login")
                     R.id.nav_diet -> replaceFragment(LoginFragment(), "Login")
+                    R.id.nav_contactList -> replaceFragment(LoginFragment(),"Login")
                 }
                 true
-            }*/
-       // }
+            }
+        }
 
 //////////////////////////////////////////////////////////edit
 

@@ -22,7 +22,7 @@ import com.example.applied_project_and_minor_dissertation.android.R
 import kotlinx.android.synthetic.main.activity_calories.*
 
 
-class StepsFragment : Fragment(), SensorEventListener {
+class StepsFragment : Fragment() , SensorEventListener {
 
     private var sensorManager: SensorManager? = null
 
