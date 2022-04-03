@@ -1,5 +1,7 @@
 server:
   port: 8082
+  error:
+    include-stacktrace: never
 spring:
   application:
     name: fraud
@@ -14,6 +16,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+        show_sql: false
     show-sql: true
   zipkin:
     base-url: http://zipkin:9411

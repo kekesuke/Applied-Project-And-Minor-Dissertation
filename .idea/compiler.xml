@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -17,17 +18,5 @@
         <module name="authentication" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="advanced-message-queues-protocol" target="17" />
-      <module name="api-gateway" target="17" />
-      <module name="authentication" target="17" />
-      <module name="diet-tracker" target="17" />
-      <module name="eureka-server" target="17" />
-      <module name="feign-clients" target="17" />
-      <module name="fitnessbuddyservices" target="17" />
-      <module name="fraud" target="17" />
-      <module name="notification" target="17" />
-      <module name="stomp" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>

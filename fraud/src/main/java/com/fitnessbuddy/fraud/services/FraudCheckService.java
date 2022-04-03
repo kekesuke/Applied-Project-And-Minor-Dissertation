@@ -2,6 +2,7 @@ package com.fitnessbuddy.fraud.services;
 
 import com.fitnessbuddy.fraud.repositories.FraudCheckHistoryRepository;
 import com.fitnessbuddy.fraud.models.FraudCheckHistory;
+import com.fitnessbuddy.fraud.repositories.FraudstersRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,15 +13,22 @@ import java.time.LocalDateTime;
 public class FraudCheckService {
 
     private final FraudCheckHistoryRepository fraudCheckHistoryRepository;
+    private final FraudstersRepository fraudstersRepository;
 
-    public boolean isFraudCustomer(Long userId){
+    public boolean isFraudCustomer(String emailAddress, String ipAddress){
+        boolean isFound = false;
+
+        if(fraudstersRepository.findByIpAddress(ipAddress).isPresent() || fraudstersRepository.findByEmailAddress(emailAddress).isPresent())
+        {
+            isFound = true;
+        }
+
         fraudCheckHistoryRepository.save(
                 FraudCheckHistory.builder()
-                        .customerId(userId)
-                        .isFraudster(false)
+                        .isFraudster(isFound)
                         .createdAt(LocalDateTime.now())
                         .build()
         );
-        return  false;
+        return isFound;
     }
 }

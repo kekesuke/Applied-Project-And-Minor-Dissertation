@@ -68,6 +68,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 					.badRequest()
 					.body(new MessageResponse(error.getFieldError().getField() + " " +error.getFieldError().getDefaultMessage()));   //create custom exception handler later
 		}
+		FraudCheckResponse fraudCheckResponse = fraudClient.isFraud(signUpRequest.getEmail(), "0.0.0.0");
+
+		if(fraudCheckResponse.isFraudster())
+		{
+			return ResponseEntity.status(HttpStatus.FORBIDDEN)
+					.body(new MessageResponse("Your email or Ip address is(are) banned (CODE 403)"));
+		}
+
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity
 					.badRequest()
@@ -85,6 +93,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 				signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()));
 
+
+
 		Set<Role> roles = new HashSet<>();
 
 		Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -92,14 +102,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		roles.add(userRole);
 
 		user.setRoles(roles);
+
+
 		userRepository.save(user);
-
-		FraudCheckResponse fraudCheckResponse = fraudClient.isFraud(user.getId());
-
-		if(fraudCheckResponse.isFraudster())
-		{
-			return ResponseEntity.status(HttpStatus.FORBIDDEN).body("The owner of that email is banned. (CODE 403)\n");
-		}
 
 		NotificationRequest notificationRequest = new NotificationRequest(
 				user.getId(),
@@ -127,6 +132,15 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		String jwt = jwtUtils.generateJwtToken(authentication);
 
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
+
+		FraudCheckResponse fraudCheckResponse = fraudClient.isFraud(userDetails.getEmail(), "0.0.0.0");
+
+		if(fraudCheckResponse.isFraudster())
+		{
+			return ResponseEntity.status(HttpStatus.FORBIDDEN)
+					.body(new MessageResponse("Your email or Ip address is(are) banned (CODE 403). Please contact customer support for more details."));
+		}
+
 		List<String> roles = userDetails.getAuthorities().stream()
 				.map(item -> item.getAuthority())
 				.collect(Collectors.toList());
