@@ -14,12 +14,13 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="6dp"
+            android:padding="3dp"
             android:text="@string/foodType"
             android:textColor="#00f"
-            android:textSize="30sp" />
+            android:gravity="center"
+            android:textSize="25sp" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -32,13 +33,15 @@
             />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
-            android:padding="6dp"
+            android:padding="3dp"
             android:text="@string/foodTree"
+            android:gravity="center"
             android:textColor="#DD2C00"
-            android:textSize="30sp" />
+            android:textSize="25sp" />
 
         <Spinner
             android:id="@+id/spinner2"
@@ -48,31 +51,31 @@
             android:layout_marginTop="10dp"
             android:theme="@style/Spinner" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                    <Button
-                        android:id="@+id/addButton"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_height="48dp"
-                        android:layout_gravity="center|left"
-                        android:gravity="center"
-                        android:text="Add quantity"
-                        android:theme="@style/ButtonColour"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/addData"
-                        android:layout_width="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_height="48dp"
-                        android:layout_gravity="center|right"
-                        android:gravity="center"
-                        android:text="Add all to diary"
-                        android:theme="@style/ButtonColour"/>
-            </LinearLayout>
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center|left"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Add quantity"
+                android:theme="@style/ButtonColour" />
+
+            <Button
+                android:id="@+id/addData"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center|right"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Add all to diary"
+                android:theme="@style/ButtonColour" />
+        </LinearLayout>
 
         <View
             android:id="@+id/divider"
@@ -85,60 +88,62 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/selected_food_tally"
-            android:theme="@style/Text"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/tallyLayout"
-        >
-    </LinearLayout>
+            android:theme="@style/Text" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="113dp"
+            >
+
+            <LinearLayout
+                android:id="@+id/tallyLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+        </ScrollView>
+
 
         <View
             android:id="@+id/divider2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?android:attr/listDivider" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center|left"
-                    android:text="@string/selected_food"
-                    android:theme="@style/Text"/>
 
-                <TextView
-                    android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_gravity="center|right"
-                    android:text="@string/userInput"
-                    android:theme="@style/Text"/>
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:layout_weight="1"
+                android:text="@string/selected_food"
+                android:theme="@style/Text" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:layout_weight="1"
+                android:text="@string/userInput"
+                android:theme="@style/Text" />
+        </LinearLayout>
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
+                android:id="@+id/tableLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:id="@+id/tableLayout"
-                >
+                android:orientation="vertical">
 
-<!--            <TextView-->
-<!--                android:id="@+id/textView4"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:text="This will edit. temp procedural edit"-->
-<!--                android:theme="@style/Text"-->
-<!--                />-->
+
             </LinearLayout>
         </ScrollView>
 

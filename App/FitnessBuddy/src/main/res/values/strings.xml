@@ -34,7 +34,7 @@
 
 <!--    spinner-->
     <string name="selected_item">Selected item:</string>
-    <string name="foodType">Food Groups</string>
+    <string name="foodType">Daily Food Groups</string>
     <string name="foodTree">list</string>
 <!--    select input for diet-->
     <string name="selected_food">Selected Food:</string>
