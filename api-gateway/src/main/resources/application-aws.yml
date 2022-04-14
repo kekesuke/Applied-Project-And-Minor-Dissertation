@@ -1,0 +1,23 @@
+server:
+  port: 8084
+  error:
+    include-stacktrace: never
+spring:
+  application:
+    name: api-gateway
+  zipkin:
+    base-url: http://172.31.28.239:9411
+  cloud:
+    gateway:
+      routes:
+        - id: authentication
+          uri: lb://AUTHENTICATION
+          predicates:
+            - Path=/api/auth/**
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.31.25.68:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+

@@ -1,0 +1,32 @@
+server:
+  port: 8082
+  error:
+    include-stacktrace: never
+spring:
+  application:
+    name: fraud
+  datasource:
+    username: admin
+    password: password
+    url: jdbc:postgresql://172.31.28.239:5433/fraud
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        show_sql: false
+    show-sql: true
+  zipkin:
+    base-url: http://172.31.28.239:9411
+
+eureka:
+  client:
+    service-url:
+        defaultZone: http://172.31.25.68:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+    ip-address: 172.31.23.247

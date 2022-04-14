@@ -26,7 +26,7 @@
       <spring.boot.maven.plugin.version>2.5.7</spring.boot.maven.plugin.version>
       <spring.boot.dependencies.version>2.5.7</spring.boot.dependencies.version>
       <spring.cloud-version>2020.0.3</spring.cloud-version>
-      <image>kekesuke/${project.artifactId}:${project.version}</image>
+      <image>179289622662.dkr.ecr.eu-west-1.amazonaws.com/${project.artifactId}</image>
     </properties>
 
     <dependencyManagement>
@@ -56,6 +56,7 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
       </dependency>
       <dependency>
         <groupId>org.springframework.cloud</groupId>
@@ -97,6 +98,7 @@
                 </platforms>
               </from>
               <to>
+
                 <tags>
                   <tag>latest</tag>
                 </tags>

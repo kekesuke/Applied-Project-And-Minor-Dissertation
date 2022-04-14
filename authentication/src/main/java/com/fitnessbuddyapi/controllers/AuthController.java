@@ -7,11 +7,11 @@ import com.fitnessbuddy.clients.fraud.requests.AddFraudsterRequest;
 import com.fitnessbuddyapi.security.jwt.JwtUtils;
 import com.fitnessbuddyapi.services.UserDetailsServiceImpl;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import com.fitnessbuddyapi.payload.request.LoginRequest;
@@ -43,5 +43,11 @@ public class AuthController {
 	@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	public ResponseEntity<?> addFraudster(@RequestBody AddFraudsterRequest addFraudsterRequest){
 		return fraudClient.addNewFraudster(addFraudsterRequest, jwtUtils.getUserNameForCurrentJWT());
+	}
+
+	@GetMapping("/fetchbymatch")
+	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
+	public ResponseEntity<?> getAllUsersWithUsername(){
+		return userService.getAllUsersNames();
 	}
 }

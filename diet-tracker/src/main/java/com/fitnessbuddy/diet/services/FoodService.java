@@ -71,7 +71,7 @@ public class FoodService{
 //                    .body(new NotFoundException(e.getMessage()));   //create custom exception handler later
 //        }
     }
-    @Transactional
+
     public Food findByName(String name) throws NotFoundException {
         Food food = foodRepository.findByfoodName(name)
                 .orElseThrow(() -> new NotFoundException("No  food found with name: " + name));

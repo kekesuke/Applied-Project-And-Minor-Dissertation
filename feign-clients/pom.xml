@@ -10,7 +10,5 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
     <artifactId>feign-clients</artifactId>
-    <dependencies>
-    </dependencies>
 
 </project>

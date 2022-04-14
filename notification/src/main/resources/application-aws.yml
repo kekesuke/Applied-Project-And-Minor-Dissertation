@@ -1,0 +1,40 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: notification
+  datasource:
+    username: admin
+    password: password
+    url: jdbc:postgresql://172.31.28.239:5433/notifications
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  zipkin:
+    base-url: http://172.31.28.239:9411
+  rabbitmq: # address for rabbitmq
+    addresses: 172.31.25.68:5672
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://172.31.25.68:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+    ip-address: 172.31.25.68
+
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queue:
+    notifications: notifications.queue
+  routing-keys:
+    internal-notifications: internal.notifications.routing-key
