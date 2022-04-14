@@ -10,7 +10,12 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.applied_project_and_minor_dissertation.android.R
+import com.example.applied_project_and_minor_dissertation.android.RetrofitHelper
 import kotlinx.android.synthetic.main.activity_diet.*
+import misc.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class DietFragment : Fragment() {
@@ -18,6 +23,7 @@ class DietFragment : Fragment() {
     private lateinit var spinner2:Spinner;
     private lateinit var type: String;
     private lateinit var type2: String;
+
     var found: Boolean = false;
     val listArray = arrayOf<Int>()
     var allEDs: MutableMap<TextView,EditText> = HashMap()// list of edit text
@@ -67,56 +73,94 @@ class DietFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addButton.setOnClickListener { view ->
-            addTable(view, type2)
-            Log.d("tableClicked", "Selected")
+            var found:Boolean = false;
+            allEDs.forEach{
+                println(it.key.text)
+                if(type2 == it.key.text){
+                    Log.d("type2$type2", "Selected ${it.key.text}")
+                  found = true;
+                }
+
+
+            }
+            if(!found)
+            {
+                addTable(view, type2)
+            }
+            //tallyTableTV(view, type2)
 
         }
         addData.setOnClickListener { view ->
+            val foods:MutableList<food> = ArrayList();
+
             allEDs.forEach{
-//               Async.http.send( ""it.key.text.toString() , it.value.text.toString())-> response - >
-//                response.getItemname, response.getCalories//get all variable of food item from response
-                println(it.key)
-//                println(it.value)
-                tallyTableTV(view, type2)
+                foods.add(food(it.key.text.toString(), it.value.text.toString().toFloat()))
+                }
+            tallyTableTV(FoodDTO(foods)){}
 
-                //tallyTableTV(view, "For " + response.foodName +" you got " +response.calories)// key is type 2, value is the qty. map is a key pair
-                //tallyTable(view, it.text.toString())
-                //sendTable()
-            }
-            Log.d("dataClicked", "Selected")
+            Log.d("foods${foods.toString()}", "FOOOOD")
         }
+
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun tallyTableTV(view: View, type2: String) {
-        // creating TextView programmatically
-        val dynamic_tv: TextView
 
-        dynamic_tv = TextView(activity?.applicationContext);
-        dynamic_tv.textSize = 15f
-//      "This is a dynamic TextView generated programmatically in Kotlin"
-        dynamic_tv.text = type2
 
-        tallyLayout.addView(dynamic_tv)
-    }
+    private fun tallyTableTV(food: FoodDTO, onResult: (List<FooDResponse>?) -> Unit) {
 
-    private fun sendTable(view: View, type2: String) {
-        val dynamic_tv: TextView
-        dynamic_tv = TextView(activity?.applicationContext);
+        /*spinner.adapter = ArrayAdapter(
+            activity?.applicationContext!!,
+            R.layout.support_simple_spinner_dropdown_item,
+            resources.getStringArray(onResult,)
+        )
 
-        for (i in 0 until listArray.size) {
+        val dynamic_lv: ListView//initalise view
+        listView.adapter = arrayAdapter
+        listView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
+            val selectedItem = adapterView.getItemAtPosition(position) as String
+            val itemIdAtPos = adapterView.getItemIdAtPosition(position)
 
-            //if you need only some of Ids, just check conditions with `if`statement. example:
-//            if (!(listArray.get(i) as EditText).text.toString()//filters through all id
-//                    .equals("", ignoreCase = true)
-//
-//            )
-
-            for ((index, value) in listArray.withIndex()) {
-                println("the element at $type2 is $id")
-            }
-
+            //Toast.makeText(applicationContext,"click item $selectedItem its position $itemIdAtPos",Toast.LENGTH_SHORT).show()
         }
+        dynamic_lv = ListView(activity?.applicationContext)//gets object*/
+
+
+
+        val retrofit = RetrofitHelper.buildService(AuthApi::class.java)
+        retrofit.sendFood(food).enqueue(
+            object : Callback<List<FooDResponse>> {
+                override fun onResponse(
+                    call: Call<List<FooDResponse>>,
+                    response: Response<List<FooDResponse>>
+                ) {
+                    if(response.isSuccessful){
+                        val addedUser = response.body()
+                        Log.d("Error", response.body().toString())
+                        onResult(addedUser)
+                        /////////////////Testing
+                        //dynamic_tv.text = FooDResponse
+
+                        //tableLayout.addView(dynamic_lv)//creates textview
+
+                        //tallyTableTV(view, type2)
+                        //tableLayout.addView(dynamic_tv)//possibly dont need this becayse listview displays whole list each time
+                        /////////////////Testing
+
+                    } else {
+                        Log.d("Error", response.message().toString())
+                        Log.d("Error", response.code().toString())
+                        Log.d("Error", response.body().toString())
+                        Log.d("Error", response.errorBody().toString())
+                        Log.d("Error", response.raw().toString())
+                    }
+
+                }
+
+                override fun onFailure(call: Call<List<FooDResponse>>, t: Throwable) {
+                    onResult(null)
+                }
+
+            }
+        )
 
 
     }
@@ -125,42 +169,16 @@ class DietFragment : Fragment() {
         // creating TextView programmatically
         val dynamic_tv: TextView
         val dynamic_et: EditText
-
-
-
-        /*allEDs.forEach { //cycle throug array
-            println(it.key)
-            tallyTableTV(view, type2)
-            tallyTableTV(view, it.value.toString())
-        }
-
-        allEDs.forEach{ //cycle throug array
-            if(it.found)
-                found true;//if found go to found
-                return//if isint found then add textview + editText
-            println(it.text)
-            tallyTable(view, type2)
-            tallyTable(view, it.text.toString())
-            //sendTable()
-
-        }
-        if(found) // allready exists out put error msg
-            Toast.makeText(activity,"Already exists", Toast.LENGTH_LONG).show()
-            return*/
         dynamic_tv = TextView(activity?.applicationContext);
         dynamic_et = EditText(activity?.applicationContext);
         Log.d("dataClicked", "Selected")
-
         dynamic_et.id = id//each editText gets set to Return the identifier this fragment is known by
-        //dynamic_et.setId(int)
         dynamic_tv.textSize = 15f
         dynamic_et.textSize = 15f
 //      "This is a dynamic TextView generated programmatically in Kotlin"
         dynamic_tv.text = type2
-
         dynamic_et.inputType = InputType.TYPE_CLASS_PHONE
 //        TYPE_TEXT_VARIATION_PASSWORD another layout for  inputtype
-
         allEDs[dynamic_tv] = dynamic_et;
         tableLayout.addView(dynamic_tv)//creates textview
         tableLayout.addView(dynamic_et)//creates editTextview

@@ -15,4 +15,8 @@ interface AuthApi {
     @POST("api/auth/signin/")
     fun loginUser(@Body userLogin: UserLogin): Call<UserLogin>
 
+    @Headers("Content-Type: application/json")
+    @POST("api/diet/foodintake")
+    fun sendFood(@Body food: FoodDTO): Call<List<FooDResponse>>
+
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import utils.FoodDto;
 
 @RestController
 @RequestMapping("api/diet")
@@ -25,7 +26,7 @@ public class FoodController {
     }
 
     @PostMapping("/foodintake")
-    public ResponseEntity<?> foodIntake(@RequestBody FoodRequest foodrequest) {
+    public ResponseEntity<?> foodIntake(@RequestBody FoodDto foodrequest) {
        return foodService.foodIntake(foodrequest);
     }
 }

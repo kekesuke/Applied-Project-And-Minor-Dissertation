@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#72c2f2"
+    android:background="@drawable/ic_logo"
     tools:context=".MainActivity"
     tools:openDrawer="start">
 <!--    com.example.applied_project_and_minor_dissertation.android-->

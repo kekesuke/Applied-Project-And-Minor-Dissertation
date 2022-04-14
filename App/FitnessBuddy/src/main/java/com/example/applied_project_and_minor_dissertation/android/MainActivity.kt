@@ -2,9 +2,12 @@ package com.example.applied_project_and_minor_dissertation.android
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -53,10 +56,6 @@ class MainActivity : AppCompatActivity() {
             Log.d("tokken", "this $token")
         }
 
-
-
-
-
         val session : SessionManager = SessionManager(applicationContext)
         Log.d("tokken", session.isLoggedIn().toString())
 
@@ -89,7 +88,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
-       // }
+       /*// }
         //else{
             /*navView.setNavigationItemSelectedListener {
                 it.isChecked = true
@@ -134,7 +133,7 @@ class MainActivity : AppCompatActivity() {
 //                DrawerLayout.closeDrawer()
 //            }
 //            return super.onBackPressed()
-//        }
+//        }*/
 
     }
 
@@ -176,6 +175,7 @@ class MainActivity : AppCompatActivity() {
         Log.d("MainActivity", "result:  $result.toString()")
 
     }
+
 }
 
 

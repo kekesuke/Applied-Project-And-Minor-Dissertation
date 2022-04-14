@@ -11,7 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import utils.FoodDto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,6 +21,7 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class FoodService{
     private final FoodRepository foodRepository;
 
@@ -36,20 +39,37 @@ public class FoodService{
 
     }
 
-    public ResponseEntity<?> foodIntake(FoodRequest foodRequest) {
-        try {
-            Food food = findByName(foodRequest.foodName());
-            food.setCalories(food.getCalories() * foodRequest.foodWeight());//Calories intake user
-            food.setProtein(food.getProtein() * foodRequest.foodWeight());//Protein intake user
-            food.setCarbs(food.getCarbs() * foodRequest.foodWeight());//Carbs intake user
-            food.setFat(food.getFat() * foodRequest.foodWeight());//Fat intake user
-            food.setFoodWeight(foodRequest.foodWeight());//take the user qty entered
-            return ResponseEntity.ok(food);
+    public ResponseEntity<?> foodIntake(FoodDto foodRequest) {
+        log.info("test");
+//        try {
+//            Food food = findByName(foodRequest.foodName());
+//            food.setCalories(food.getCalories() * foodRequest.foodWeight());//Calories intake user
+//            food.setProtein(food.getProtein() * foodRequest.foodWeight());//Protein intake user
+//            food.setCarbs(food.getCarbs() * foodRequest.foodWeight());//Carbs intake user
+//            food.setFat(food.getFat() * foodRequest.foodWeight());//Fat intake user
+//            food.setFoodWeight(foodRequest.foodWeight());//take the user qty entered
+            List<Food> listFood = new ArrayList<>();
+             foodRequest.getFood().forEach( food -> {
+                 log.info(food.getFoodName());
+                 try {
+                     Food currentFood = findByName(food.getFoodName().toLowerCase());
+                     currentFood.setCalories(currentFood.getCalories() * food.getFoodWeight());//Calories intake user
+                     currentFood.setProtein(currentFood.getProtein() * food.getFoodWeight());//Protein intake user
+                     currentFood.setCarbs(currentFood.getCarbs() * food.getFoodWeight());//Carbs intake user
+                     currentFood.setFat(currentFood.getFat() * food.getFoodWeight());//Fat intake user
+                     currentFood.setFoodWeight(food.getFoodWeight());//take the user qty entered
+                     listFood.add(currentFood);;
+                 } catch (NotFoundException e) {
+                     e.printStackTrace();
+                 }
 
-        }catch (NotFoundException e) {
-            return ResponseEntity.badRequest()
-                    .body(new NotFoundException(e.getMessage()));   //create custom exception handler later
-        }
+            });
+            return ResponseEntity.ok(listFood);
+
+//        }catch (NotFoundException e) {
+//            return ResponseEntity.badRequest()
+//                    .body(new NotFoundException(e.getMessage()));   //create custom exception handler later
+//        }
     }
     @Transactional
     public Food findByName(String name) throws NotFoundException {
