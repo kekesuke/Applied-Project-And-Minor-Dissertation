@@ -125,7 +125,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         Geocoder geocoder = new Geocoder(getActivity(), Locale.getDefault());
                         try {
                             addressList = geocoder.getFromLocationName(location, 1);
-                        } catch (IOException e) {
+                        }
+                        catch (IOException e) {
                             e.printStackTrace();
                         }
                         Address address = addressList.get(0);
@@ -133,7 +134,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                         googleMap.addMarker(new MarkerOptions().position(latLng).title((location)));
                         googleMap.animateCamera((CameraUpdateFactory.newLatLngZoom(latLng, 10)));
                     }
-                } catch (Exception e) {
+                }
+                catch (Exception e) {
                     Toast.makeText(requireContext(), "Couldn't match the location", Toast.LENGTH_SHORT).show();
                 }
                 return false;
@@ -166,8 +168,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private void fetchLastLocation() {
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(getActivity(), new String[]
                     {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             return;
@@ -187,8 +188,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     public void setUpMap() {
         googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             /*// TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding

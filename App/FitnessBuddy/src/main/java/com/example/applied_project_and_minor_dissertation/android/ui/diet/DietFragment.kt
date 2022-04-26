@@ -19,49 +19,88 @@ import retrofit2.Response
 
 
 class DietFragment : Fragment() {
-    private lateinit var spinner:Spinner;
-    private lateinit var spinner2:Spinner;
+    private lateinit var spinner: Spinner;
+    private lateinit var spinner2: Spinner;
     private lateinit var type: String;
     private lateinit var type2: String;
+    private lateinit var stored: MutableList<String>;
 
     var found: Boolean = false;
-    val listArray = arrayOf<Int>()
-    var allEDs: MutableMap<TextView,EditText> = HashMap()// list of edit text
-    private val food = arrayOf("Meat", "Vegetables", "Fruit")// will decide what second spinner will display
-    val meat = arrayOf("Pork", "Chicken", "Beef","Lamb", "Turkey")
-    val vegetables = arrayOf("Broccoli", "Carrots", "Potato","Tomatoes", "Onions", "Mushroom", "Lettuce", "Pumpkin")
-    val fruit = arrayOf("Apples", "Oranges", "Raspberries","Banana", "Pineapple")
+
+    //    val listArray = arrayOf<Int>()
+    var allEDs: MutableMap<TextView, EditText> = HashMap()// list of edit text
+    private val food =
+        arrayOf("Meat", "Vegetables", "Fruit")// will decide what second spinner will display
+    val meat = arrayOf("Pork", "Chicken", "Beef", "Lamb", "Turkey", "Goat", "Duck")
+    val vegetables = arrayOf(
+        "Broccoli",
+        "Carrots",
+        "Potato",
+        "Tomatoes",
+        "Onions",
+        "Mushroom",
+        "Lettuce",
+        "Pumpkin"
+    )
+    val fruit = arrayOf(
+        "Apples",
+        "Oranges",
+        "Raspberries",
+        "Banana",
+        "Pineapple",
+        "Watermelon",
+        "Mangos",
+        "Pears"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        val root=inflater.inflate(R.layout.activity_diet, container, false)
+        stored = ArrayList();
+        val root = inflater.inflate(R.layout.activity_diet, container, false)
         spinner = root.findViewById(R.id.spinner)
         spinner2 = root.findViewById(R.id.spinner2)
-        spinner?.adapter = activity?.applicationContext?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, food) } as SpinnerAdapter
-        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        spinner?.adapter = activity?.applicationContext?.let {
+            ArrayAdapter(
+                it,
+                R.layout.support_simple_spinner_dropdown_item,
+                food
+            )
+        } as SpinnerAdapter
+        spinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                type  = parent?.getItemAtPosition(position).toString()
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                type = parent?.getItemAtPosition(position).toString()
                 changeSpinnerContent(type);
-                spinner2?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                spinner2?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
-                    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>?,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
                         type2 = parent?.getItemAtPosition(position).toString()
 
-                        Toast.makeText(activity,type2, Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, type2, Toast.LENGTH_LONG).show()
                     }
+
                     override fun onNothingSelected(parent: AdapterView<*>?) {
                         println("error")
                     }
                 }
 
-                Toast.makeText(activity,type, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, type, Toast.LENGTH_LONG).show()
                 println(type)
             }
+
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 println("error")
             }
@@ -73,30 +112,40 @@ class DietFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addButton.setOnClickListener { view ->
-            var found:Boolean = false;
-            allEDs.forEach{
+            var found: Boolean = false;
+            allEDs.forEach {
                 println(it.key.text)
-                if(type2 == it.key.text){
+                if (type2 == it.key.text) {
                     Log.d("type2$type2", "Selected ${it.key.text}")
-                  found = true;
+                    found = true;
                 }
 
 
             }
-            if(!found)
-            {
+            if (!found) {
                 addTable(view, type2)
             }
             //tallyTableTV(view, type2)
 
         }
         addData.setOnClickListener { view ->
-            val foods:MutableList<food> = ArrayList();
+            val foods: MutableList<food> = ArrayList();
+            var emptyInput: Boolean = false
+            allEDs.forEach {
+                Log.d("Test", "Vlue ${it.key.text}")
+                if(!stored.contains(it.key.text.toString())){
+                    foods.add(food(it.key.text.toString(), it.value.text.toString().toFloat()))
+                    stored.add(it.key.text.toString())
 
-            allEDs.forEach{
-                foods.add(food(it.key.text.toString(), it.value.text.toString().toFloat()))
                 }
-            tallyTableTV(FoodDTO(foods)){}
+
+            }
+            if(foods.isNotEmpty()){
+                tallyTableTV(FoodDTO(foods)){}
+            }
+
+
+            //tallyTableTV(FoodDTO(foods)) {}
 
             Log.d("foods${foods.toString()}", "FOOOOD")
         }
@@ -104,26 +153,7 @@ class DietFragment : Fragment() {
     }
 
 
-
     private fun tallyTableTV(food: FoodDTO, onResult: (List<FooDResponse>?) -> Unit) {
-
-        /*spinner.adapter = ArrayAdapter(
-            activity?.applicationContext!!,
-            R.layout.support_simple_spinner_dropdown_item,
-            resources.getStringArray(onResult,)
-        )
-
-        val dynamic_lv: ListView//initalise view
-        listView.adapter = arrayAdapter
-        listView.onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, position, id ->
-            val selectedItem = adapterView.getItemAtPosition(position) as String
-            val itemIdAtPos = adapterView.getItemIdAtPosition(position)
-
-            //Toast.makeText(applicationContext,"click item $selectedItem its position $itemIdAtPos",Toast.LENGTH_SHORT).show()
-        }
-        dynamic_lv = ListView(activity?.applicationContext)//gets object*/
-
-
 
         val retrofit = RetrofitHelper.buildService(AuthApi::class.java)
         retrofit.sendFood(food).enqueue(
@@ -132,18 +162,18 @@ class DietFragment : Fragment() {
                     call: Call<List<FooDResponse>>,
                     response: Response<List<FooDResponse>>
                 ) {
-                    if(response.isSuccessful){
+                    if (response.isSuccessful) {
                         val addedUser = response.body()
                         Log.d("Error", response.body().toString())
                         onResult(addedUser)
-                        /////////////////Testing
-                        //dynamic_tv.text = FooDResponse
 
-                        //tableLayout.addView(dynamic_lv)//creates textview
-
-                        //tallyTableTV(view, type2)
-                        //tableLayout.addView(dynamic_tv)//possibly dont need this becayse listview displays whole list each time
-                        /////////////////Testing
+                        val dynamic_tv: TextView
+                        dynamic_tv = TextView(activity?.applicationContext);
+                        dynamic_tv.textSize = 15f
+                        response.body()?.forEach() {
+                            dynamic_tv.append(it.foodName + ": " + it.calories + " calories," + it.carbs + "carbs, " + +it.protein + " protein, " + it.foodWeight + " food weight in gramms, " + "\n")
+                        }
+                        tallyLayout.addView(dynamic_tv)//creates textview
 
                     } else {
                         Log.d("Error", response.message().toString())
@@ -172,7 +202,8 @@ class DietFragment : Fragment() {
         dynamic_tv = TextView(activity?.applicationContext);
         dynamic_et = EditText(activity?.applicationContext);
         Log.d("dataClicked", "Selected")
-        dynamic_et.id = id//each editText gets set to Return the identifier this fragment is known by
+        dynamic_et.id =
+            id//each editText gets set to Return the identifier this fragment is known by
         dynamic_tv.textSize = 15f
         dynamic_et.textSize = 15f
 //      "This is a dynamic TextView generated programmatically in Kotlin"
@@ -184,12 +215,29 @@ class DietFragment : Fragment() {
         tableLayout.addView(dynamic_et)//creates editTextview
     }
 
-    private fun changeSpinnerContent(type:String)
-    {
+    private fun changeSpinnerContent(type: String) {
         when (type) {
-            "Meat" -> spinner2?.adapter = activity?.applicationContext?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, meat) } as SpinnerAdapter
-            "Vegetables" -> spinner2?.adapter = activity?.applicationContext?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, vegetables) } as SpinnerAdapter
-            "Fruit" -> spinner2?.adapter = activity?.applicationContext?.let { ArrayAdapter(it, R.layout.support_simple_spinner_dropdown_item, fruit) } as SpinnerAdapter
+            "Meat" -> spinner2?.adapter = activity?.applicationContext?.let {
+                ArrayAdapter(
+                    it,
+                    R.layout.support_simple_spinner_dropdown_item,
+                    meat
+                )
+            } as SpinnerAdapter
+            "Vegetables" -> spinner2?.adapter = activity?.applicationContext?.let {
+                ArrayAdapter(
+                    it,
+                    R.layout.support_simple_spinner_dropdown_item,
+                    vegetables
+                )
+            } as SpinnerAdapter
+            "Fruit" -> spinner2?.adapter = activity?.applicationContext?.let {
+                ArrayAdapter(
+                    it,
+                    R.layout.support_simple_spinner_dropdown_item,
+                    fruit
+                )
+            } as SpinnerAdapter
             else -> { // Note the block
                 print("x is neither 1 nor 2")
             }

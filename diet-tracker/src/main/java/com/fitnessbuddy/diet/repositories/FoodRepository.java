@@ -1,6 +1,6 @@
 package com.fitnessbuddy.diet.repositories;
 
-import com.fitnessbuddy.diet.models.Food;
+import com.fitnessbuddy.diet.repositories.models.Food;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

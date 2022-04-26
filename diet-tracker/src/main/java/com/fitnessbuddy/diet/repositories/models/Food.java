@@ -1,4 +1,4 @@
-package com.fitnessbuddy.diet.models;
+package com.fitnessbuddy.diet.repositories.models;
 
 import lombok.*;
 

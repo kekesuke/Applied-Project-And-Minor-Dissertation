@@ -2,7 +2,7 @@ package com.fitnessbuddy.diet.services;
 
 
 import com.fitnessbuddy.clients.diet.requests.FoodRequest;
-import com.fitnessbuddy.diet.models.Food;
+import com.fitnessbuddy.diet.repositories.models.Food;
 import com.fitnessbuddy.diet.repositories.FoodRepository;
 
 import javassist.NotFoundException;
@@ -10,13 +10,10 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import utils.FoodDto;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 
 @Service
