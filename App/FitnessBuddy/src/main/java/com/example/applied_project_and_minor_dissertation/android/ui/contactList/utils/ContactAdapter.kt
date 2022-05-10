@@ -6,7 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import java.lang.String
 
-class ContactAdapter(seed: Int): RecyclerView.Adapter<ContactViewHolder>() {
+class ContactAdapter(contacts: ArrayList<Contact>): RecyclerView.Adapter<ContactViewHolder>() {
+
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(viewType,parent,false)

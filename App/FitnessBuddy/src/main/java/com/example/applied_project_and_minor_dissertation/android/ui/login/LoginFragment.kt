@@ -96,7 +96,7 @@ class LoginFragment : Fragment(), MyFrag.MyFragInterace{
                         login_editText_username
                         val session = getInstance()
                         Toast.makeText(requireActivity().applicationContext, "User Login Status: " + session!!.isLoggedIn(), Toast.LENGTH_LONG).show();
-                        session?.createLoginSession(response.body()!!.username, response.body()!!.email);
+                        session?.createLoginSession(response.body()!!.username, response.body()!!.email, response.body()!!.accessToken);
                         session?.let { Log.d("testing", it.EMAIL) }
                         session?.let { Log.d("testing", it.USER_NAME) }
                         Log.d("testing" , response.body()!!.username)

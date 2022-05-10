@@ -10,14 +10,16 @@ class SessionManager(val context: Context) {
     private val LOGIN_TRUE = "IsLoggedIn"
     val USER_NAME = "username"
     val EMAIL = "email"
+    val accessToken = "accessToken";
 
     val pref : SharedPreferences = context.getSharedPreferences(PREF_NAME,PRIVATE_MODE)
     val editor : SharedPreferences.Editor = pref.edit()
 
-    fun createLoginSession(name:String, email: String?){
+    fun createLoginSession(name:String, email: String?, token: String?){
         editor.putBoolean(LOGIN_TRUE, true)
         editor.putString(USER_NAME, name)
         editor.putString(EMAIL, email)
+        editor.putString(accessToken, token)
         editor.commit()
     }
 
@@ -36,6 +38,9 @@ class SessionManager(val context: Context) {
 
         // user email id
         user1[EMAIL] = pref.getString(EMAIL, null)
+
+        //user token
+        user1[accessToken] = pref.getString(accessToken, null)
 
         // return user
         return user1

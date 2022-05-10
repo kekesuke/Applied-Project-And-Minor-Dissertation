@@ -1,31 +1,26 @@
 package com.fitnessbuddy.stomp.model;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class MessageModel {
 
 	@Id
-	@SequenceGenerator(
-			name = "notification_id_sequence",
-			sequenceName = "notification_id_sequence"
-	)
-	@GeneratedValue(
-			strategy = GenerationType.SEQUENCE,
-			generator = "notification_id_sequence"
-	)
-	private int messageId;
+	private String messageId;
+	private String chatId;
+	private String senderId;
+	private String recieverId;
+	private String sendUsername;
 	private String messageContent;
-    private String userName;
+	private String userName;
 	private String timeStamp;
+};
 
 
 
@@ -128,4 +123,4 @@ public class MessageModel {
 	 */
 	 
 
-}
+
