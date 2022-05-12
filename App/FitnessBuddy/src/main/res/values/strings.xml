@@ -10,7 +10,7 @@
     <string name="menu_register">Register</string>
     <string name="menu_login">Login</string>
     <string name="menu_maps">Maps</string>
-    <string name="menu_diet">Diet</string>
+    <string name="menu_diet">Diet (Daily Food Groups)</string>
     <string name="menu_diary">BMI Calculator</string>
     <string name="menu_steps">Steps tracker</string>
     <string name="menu_userProfile">User Profile</string>

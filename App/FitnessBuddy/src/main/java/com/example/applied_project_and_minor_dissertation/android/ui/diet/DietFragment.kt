@@ -11,6 +11,7 @@ import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.applied_project_and_minor_dissertation.android.R
 import com.example.applied_project_and_minor_dissertation.android.RetrofitHelper
+import kotlinx.android.synthetic.main.activity_diary.*
 import kotlinx.android.synthetic.main.activity_diet.*
 import misc.*
 import retrofit2.Call
@@ -24,6 +25,7 @@ class DietFragment : Fragment() {
     private lateinit var type: String;
     private lateinit var type2: String;
     private lateinit var stored: MutableList<String>;
+    private var visibility = visible;
 
     var found: Boolean = false;
 
@@ -60,6 +62,7 @@ class DietFragment : Fragment() {
     ): View? {
         stored = ArrayList();
         val root = inflater.inflate(R.layout.activity_diet, container, false)
+        visibility = root.findViewById(R.id.tableLayout)
         spinner = root.findViewById(R.id.spinner)
         spinner2 = root.findViewById(R.id.spinner2)
         spinner?.adapter = activity?.applicationContext?.let {
@@ -124,6 +127,8 @@ class DietFragment : Fragment() {
             }
             if (!found) {
                 addTable(view, type2)
+                tableLayout.visibility = View.VISIBLE
+                visible.visibility = View.VISIBLE
             }
             //tallyTableTV(view, type2)
 
@@ -142,6 +147,8 @@ class DietFragment : Fragment() {
             }
             if(foods.isNotEmpty()){
                 tallyTableTV(FoodDTO(foods)){}
+                tableLayout.removeAllViews()
+                visible.visibility = View.GONE
             }
 
 
@@ -171,7 +178,9 @@ class DietFragment : Fragment() {
                         dynamic_tv = TextView(activity?.applicationContext);
                         dynamic_tv.textSize = 15f
                         response.body()?.forEach() {
-                            dynamic_tv.append(it.foodName + ": " + it.calories + " calories," + it.carbs + "carbs, " + +it.protein + " protein, " + it.foodWeight + " food weight in gramms, " + "\n")
+                            //dynamic_tv.append(it.foodName + ": " + it.calories + " calories," + it.carbs + "carbs, " + +it.protein + " protein, " + it.foodWeight + " food weight in gramms, " + "\n")
+                            dynamic_tv.append(String.format("%s:\n%.2f calories %.2f carbs\n%.2f protein %.2f qty", it.foodName, it.calories, it.carbs, it.protein, it.foodWeight  ))
+
                         }
                         tallyLayout.addView(dynamic_tv)//creates textview
 
@@ -202,13 +211,14 @@ class DietFragment : Fragment() {
         dynamic_tv = TextView(activity?.applicationContext);
         dynamic_et = EditText(activity?.applicationContext);
         Log.d("dataClicked", "Selected")
-        dynamic_et.id =
-            id//each editText gets set to Return the identifier this fragment is known by
+        dynamic_et.id = id
+        //each editText gets set to Return the identifier this fragment is known by
         dynamic_tv.textSize = 15f
         dynamic_et.textSize = 15f
 //      "This is a dynamic TextView generated programmatically in Kotlin"
         dynamic_tv.text = type2
         dynamic_et.inputType = InputType.TYPE_CLASS_PHONE
+        dynamic_et.hint = "Enter food weight in grams here"
 //        TYPE_TEXT_VARIATION_PASSWORD another layout for  inputtype
         allEDs[dynamic_tv] = dynamic_et;
         tableLayout.addView(dynamic_tv)//creates textview
