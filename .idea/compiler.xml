@@ -16,8 +16,5 @@
         <module name="authentication" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="stomp" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>

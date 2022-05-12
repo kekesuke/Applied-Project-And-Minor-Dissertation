@@ -6,12 +6,12 @@
     <string name="nav_header_subtitle">https://github.com/kekesuke/Applied-Project-And-Minor-Dissertation</string>
     <string name="nav_header_desc">Work hard</string>
     <string name="action_settings">Settings</string>
-<!--    Fragment names-->
+    <!--    Fragment names-->
     <string name="menu_register">Register</string>
     <string name="menu_login">Login</string>
     <string name="menu_maps">Maps</string>
     <string name="menu_diet">Diet</string>
-    <string name="menu_diary">Diary</string>
+    <string name="menu_diary">BMI Calculator</string>
     <string name="menu_steps">Steps tracker</string>
     <string name="menu_userProfile">User Profile</string>
     <string name="menu_chat">Chats</string>
@@ -31,12 +31,17 @@
     <string name="flat">Flat</string>
     <string name="rotation">Rotation:</string>
     <string name="drag_melbourne">Drag Melbourne</string>
+    <string name="weight">Weight(kg)</string>
+    <string name="height">Height(cm)</string>
+    <string name="calculate">Calculate Your BMI</string>
+    <string name="userBMI">Your BMI is</string>
+    <string name="reCalculate">Recalculate your BMI</string>
 
-<!--    spinner-->
+    <!--    spinner-->
     <string name="selected_item">Selected item:</string>
     <string name="foodType">Daily Food Groups</string>
     <string name="foodTree">list</string>
-<!--    select input for diet-->
+    <!--    select input for diet-->
     <string name="selected_food">Selected Food:</string>
     <string name="selected_food_edit">:</string>
     <string name="selected_food_tally">Selected Food tally:</string>
