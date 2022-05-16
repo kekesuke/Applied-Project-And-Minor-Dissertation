@@ -6,9 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitHelper {
     private val client = OkHttpClient.Builder().build()
-    val baseUrl = "http://192.168.178.1"
-    //54.170.59.5:8084 // when aws is running
-//    http://192.168.1.1:8080/
+    val baseUrl = "http://192.168.178.1"//inset ip here with regarding to the "http://" format folling your own ip or if the aws service is up 24/7 doesnt require change
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(baseUrl) // change this IP for testing by your actual machine IP

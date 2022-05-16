@@ -1,13 +1,10 @@
 package com.example.applied_project_and_minor_dissertation.android
 
-import android.content.Intent
+
 import android.content.SharedPreferences
-import android.graphics.Color
 import android.os.Bundle
-import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.MenuItem
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -88,59 +85,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
-       /*// }
-        //else{
-            /*navView.setNavigationItemSelectedListener {
-                it.isChecked = true
-                when (it.itemId) {
 
-                    R.id.nav_home -> replaceFragment(RegisterFragment(), it.title.toString())
-                    R.id.nav_login -> replaceFragment(LoginFragment(), "Login")
-                    R.id.nav_maps -> replaceFragment(LoginFragment(), "Login")
-                    R.id.nav_calories -> replaceFragment(LoginFragment(), "Login")
-                    R.id.nav_diet -> replaceFragment(LoginFragment(), "Login")
-                }
-                true
-            }*/
-       // }
-
-//////////////////////////////////////////////////////////edit
-
-//sean code
-//        register_register_button.setOnClickListener {
-//            val username = register_editText_username.text.toString()
-//            val email = register_editText_email.text.toString()
-//            val password = register_editText_password.text.toString()
-//
-//            Log.d("MainActivity", "username is: $username")
-//            Log.d("MainActivity", "Email is: $email")
-//            Log.d("MainActivity", "password is: $password")
-//
-//
-//            //sendPost(username,email,password)
-//            lifecycleScope.launch {
-//                val result = sendPost(username, email, password)
-//
-//                onResult(result);
-//
-//
-//            }
-//
-//        }
-
-//        override fun onBackPressed() {
-//            if (DrawerLayout.(GravityCompat.START)) {
-//                DrawerLayout.closeDrawer()
-//            }
-//            return super.onBackPressed()
-//        }*/
-
-    }
-
-    public fun replace()
-    {
-        val intent = Intent(applicationContext, MapsActivity::class.java)
-        startActivity(intent)
     }
 
     private fun replaceFragment(fragment: Fragment,title: String)

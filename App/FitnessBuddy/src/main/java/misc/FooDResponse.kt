@@ -11,3 +11,4 @@ data class FooDResponse(
     val carbs: Float,
     val foodWeight: Float
 )
+//everything included in the food object recieved from the database

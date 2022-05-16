@@ -35,7 +35,7 @@ class DiaryFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val root = inflater.inflate(R.layout.activity_diary, container, false)
-        (requireActivity() as AppCompatActivity).supportActionBar?.hide()
+        (requireActivity() as AppCompatActivity).supportActionBar?.show()
         imageMale = root.findViewById(R.id.image_male)
         imageGirl = root.findViewById(R.id.image_female_blur)
         weight = root.findViewById(R.id.weight_value)

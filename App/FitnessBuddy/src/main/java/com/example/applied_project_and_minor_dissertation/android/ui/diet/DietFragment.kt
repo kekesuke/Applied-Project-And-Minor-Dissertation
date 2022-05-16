@@ -1,6 +1,5 @@
 package com.example.applied_project_and_minor_dissertation.android.ui.diet
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -13,6 +12,7 @@ import com.example.applied_project_and_minor_dissertation.android.R
 import com.example.applied_project_and_minor_dissertation.android.RetrofitHelper
 import kotlinx.android.synthetic.main.activity_diary.*
 import kotlinx.android.synthetic.main.activity_diet.*
+import kotlinx.android.synthetic.main.activity_diet.view.*
 import misc.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -82,6 +82,8 @@ class DietFragment : Fragment() {
             ) {
                 type = parent?.getItemAtPosition(position).toString()
                 changeSpinnerContent(type);
+                view?.textView?.isSingleLine = false
+                view?.textView?.gravity = 5
                 spinner2?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
                     override fun onItemSelected(

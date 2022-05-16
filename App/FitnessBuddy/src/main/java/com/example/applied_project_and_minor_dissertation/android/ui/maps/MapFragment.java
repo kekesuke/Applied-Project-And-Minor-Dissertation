@@ -23,8 +23,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.example.applied_project_and_minor_dissertation.android.MainActivity;
-import com.example.applied_project_and_minor_dissertation.android.MapsActivity;
 import com.example.applied_project_and_minor_dissertation.android.R;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
