@@ -27,10 +27,16 @@ There is on more option to run the front end and that’s to go int6o android st
 
 You are now able to run the application, the backend is hosted on the cloud so there is no need to run locally but if you would like to you can run the backend on docker.
 
+To install Docker Navigate to [Docker docks](https://docs.docker.com/desktop/windows/install/)
+- click on
+![image](https://user-images.githubusercontent.com/49272530/168631848-3f8e2f29-b006-44f3-a4fc-f163eeea9cab.png)
+- Follow the instructions and restart your pc.
+
 •	To run it locally you must have docker desktop installed, then you must run docker-compose up in the main file and this will launch all the services on docker. It may take a minute or two all instances to be running.
 
 ![image](https://user-images.githubusercontent.com/49272530/163060435-9ad9a0cf-d185-47b2-8fe1-2cf844e4cee2.png)
 
+The applications IP under helper.kt may need to be changed to your local IP address if the AWS service isn't running 24/7. You can find your local IP address in your network adapter settings, and for the communication between the microservice and the emulator specifically must be on mobile data (which you must set up the APN(Access Point Name) and the Port number on the emulator on a physical device this isn't required) for these features to operate as the WI-FI on the emulator requires you to expose the port for the API's to be guided to the specified port and IP address.
 
 # GET
 	http://localhost:8080/api/test/user
