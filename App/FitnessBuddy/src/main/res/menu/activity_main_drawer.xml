@@ -14,6 +14,10 @@
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_login"
             android:title="@string/menu_login" />
+<!--        <item-->
+<!--            android:id="@+id/login_logout_button"-->
+<!--            android:icon="@drawable/ic_logout"-->
+<!--            android:title="@string/logout" />-->
         <item
             android:id="@+id/nav_maps"
             android:icon="@drawable/ic_map"
@@ -42,5 +46,8 @@
             android:id="@+id/nav_contactList"
             android:icon="@drawable/ic_contact_list"
             android:title="@string/menu_contactList" />
+
     </group>
+
+
 </menu>

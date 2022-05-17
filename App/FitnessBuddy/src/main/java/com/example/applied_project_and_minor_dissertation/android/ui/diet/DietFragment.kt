@@ -65,6 +65,7 @@ class DietFragment : Fragment() {
         visibility = root.findViewById(R.id.tableLayout)
         spinner = root.findViewById(R.id.spinner)
         spinner2 = root.findViewById(R.id.spinner2)
+
         spinner?.adapter = activity?.applicationContext?.let {
             ArrayAdapter(
                 it,
@@ -159,9 +160,33 @@ class DietFragment : Fragment() {
             Log.d("foods${foods.toString()}", "FOOOOD")
         }
 
+//        loadData()
+//        resetFood()
+    }
+    /*private fun loadData() {
+        val sharedPreferences = requireContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val savedFood = sharedPreferences.getString("keyF", "")
+        Log.d("CaloriesFragment", "$savedFood")
+
     }
 
+    private fun saveData(){
+        val sharedPreferences = requireContext().getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("keyF", stored.toString())
+        editor.apply()
+    }
 
+    private fun resetFood() {
+        tv_reset.setOnClickListener{
+            Toast.makeText(requireContext(), "Long tap to reset steps", Toast.LENGTH_SHORT).show()
+        }
+        tv_reset.setOnLongClickListener{
+            stored.clear()
+            saveData()
+            true
+        }
+    }*/
     private fun tallyTableTV(food: FoodDTO, onResult: (List<FooDResponse>?) -> Unit) {
 
         val retrofit = RetrofitHelper.buildService(AuthApi::class.java)
@@ -181,7 +206,7 @@ class DietFragment : Fragment() {
                         dynamic_tv.textSize = 15f
                         response.body()?.forEach() {
                             //dynamic_tv.append(it.foodName + ": " + it.calories + " calories," + it.carbs + "carbs, " + +it.protein + " protein, " + it.foodWeight + " food weight in gramms, " + "\n")
-                            dynamic_tv.append(String.format("%s:\n%.2f calories %.2f carbs\n%.2f protein %.2f qty", it.foodName, it.calories, it.carbs, it.protein, it.foodWeight  ))
+                            dynamic_tv.append(String.format("%s:\n%.2f calories %.2f carbs\n%.2f protein %.2f qty\n", it.foodName, it.calories, it.carbs, it.protein, it.foodWeight  ))
 
                         }
                         tallyLayout.addView(dynamic_tv)//creates textview
@@ -219,7 +244,7 @@ class DietFragment : Fragment() {
         dynamic_et.textSize = 15f
 //      "This is a dynamic TextView generated programmatically in Kotlin"
         dynamic_tv.text = type2
-        dynamic_et.inputType = InputType.TYPE_CLASS_PHONE
+        dynamic_et.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
         dynamic_et.hint = "Enter food weight in grams here"
 //        TYPE_TEXT_VARIATION_PASSWORD another layout for  inputtype
         allEDs[dynamic_tv] = dynamic_et;

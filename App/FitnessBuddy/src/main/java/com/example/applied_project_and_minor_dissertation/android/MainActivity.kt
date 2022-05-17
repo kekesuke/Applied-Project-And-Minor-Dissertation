@@ -5,6 +5,8 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -29,6 +31,7 @@ import io.ktor.client.features.json.serializer.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
+import kotlinx.android.synthetic.main.activity_diary.*
 import misc.User
 
 
@@ -41,6 +44,7 @@ val client = HttpClient(Android) {
 class MainActivity : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var drawerLayout: DrawerLayout
+    private lateinit var logout:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,8 +73,10 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         //if(session.isLoggedIn()) {
+        if(session.isLoggedIn()) {
             navView.setNavigationItemSelectedListener {
                 it.isChecked = true
+
                 when (it.itemId) {
 
                     R.id.nav_home -> replaceFragment(RegisterFragment(), it.title.toString())
@@ -85,9 +91,47 @@ class MainActivity : AppCompatActivity() {
                 }
                 true
             }
+        }
+        else {
+            navView.setNavigationItemSelectedListener {
+                it.isChecked = true
+
+                when (it.itemId) {
+
+                    R.id.nav_home -> replaceFragment(LoginFragment(), it.title.toString())
+                    R.id.nav_login -> replaceFragment(LoginFragment(), it.title.toString())
+                    R.id.nav_maps -> replaceFragment(LoginFragment(), it.title.toString())
+                    R.id.nav_calories -> replaceFragment(LoginFragment(), it.title.toString())
+                    R.id.nav_diet -> replaceFragment(LoginFragment(), it.title.toString())
+                    R.id.nav_diary -> replaceFragment(LoginFragment(), it.title.toString())
+                    R.id.nav_userProfile -> replaceFragment(
+                        LoginFragment(),
+                        it.title.toString()
+                    )
+                    R.id.nav_chat -> replaceFragment(LoginFragment(), it.title.toString())
+                    R.id.nav_contactList -> replaceFragment(
+                        LoginFragment(),
+                        it.title.toString()
+                    )
+                }
+                true
+            }
+
+        }
 
     }
 
+
+    //    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//
+//        buttonLogut.setOnClickListener{
+//            val session = getInstance()
+//            session.logout()
+//            val myIntent = Intent(context, MainActivity::class.java)
+//            this@LoginFragment.startActivity(myIntent)
+//        }
+//        return true
+//    }
     private fun replaceFragment(fragment: Fragment,title: String)
     {
         val fragmentManager = supportFragmentManager

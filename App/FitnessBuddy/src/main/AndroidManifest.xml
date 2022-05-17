@@ -16,6 +16,7 @@
     <application
         android:allowBackup="true"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
 
         <!--
@@ -34,15 +35,12 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"> <!-- Label to change app name for header -->
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"> <!-- Label to change app name for header -->
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
