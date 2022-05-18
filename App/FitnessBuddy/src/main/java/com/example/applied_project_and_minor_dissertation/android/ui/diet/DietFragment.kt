@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.applied_project_and_minor_dissertation.android.R
-import com.example.applied_project_and_minor_dissertation.android.RetrofitHelper
-import kotlinx.android.synthetic.main.activity_diary.*
+import com.example.applied_project_and_minor_dissertation.android.Retrofit.ServerEndPoints
+import com.example.applied_project_and_minor_dissertation.android.Retrofit.RetrofitHelper
+import com.example.applied_project_and_minor_dissertation.android.responses.FooDResponse
+import com.example.applied_project_and_minor_dissertation.android.responses.FoodDTO
+import com.example.applied_project_and_minor_dissertation.android.responses.food
 import kotlinx.android.synthetic.main.activity_diet.*
 import kotlinx.android.synthetic.main.activity_diet.view.*
-import misc.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -189,7 +191,7 @@ class DietFragment : Fragment() {
     }*/
     private fun tallyTableTV(food: FoodDTO, onResult: (List<FooDResponse>?) -> Unit) {
 
-        val retrofit = RetrofitHelper.buildService(AuthApi::class.java)
+        val retrofit = RetrofitHelper.buildService(ServerEndPoints::class.java)
         retrofit.sendFood(food).enqueue(
             object : Callback<List<FooDResponse>> {
                 override fun onResponse(

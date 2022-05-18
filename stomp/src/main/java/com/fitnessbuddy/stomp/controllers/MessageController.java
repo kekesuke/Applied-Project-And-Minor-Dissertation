@@ -15,20 +15,11 @@ public class MessageController {
     @Autowired
     MessageService messageService;
 
-    @MessageMapping("/hello-msg-mappung")
-    @SendTo("/topic/greetings")
+    @MessageMapping("/message")
+    @SendTo("/topic/chat")
     public MessageModel echoMessageMapping(String message){
-        log.debug("React to hello-msg-mapping");
+        log.debug("Response to message");
         return new MessageModel(message);
     }
-
-    @RequestMapping(value = "/hello-covert-and-send", method = RequestMethod.POST)
-    public void echoConvertAndSend(@RequestParam("msg") String message){
-        messageService.Message(message);
-    }
-
-
-
-
 
 }

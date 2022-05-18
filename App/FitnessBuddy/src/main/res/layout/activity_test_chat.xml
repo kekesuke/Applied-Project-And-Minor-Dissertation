@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="disconnectStomp"
-            android:text="dissonect_stomp" />
+            android:text="dis-connect" />
 
     </LinearLayout>
 
@@ -54,15 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="sendEchoViaStomp"
-            android:text="sendEcho" />
-        <Button
-            android:id="@+id/sendMode"
-            style="?android:buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:onClick="sendEchoViaRest"
-            android:text="sendMode" />
+            android:text="Send Message"
+            android:textAllCaps="false"
+            android:textColor="#000000" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

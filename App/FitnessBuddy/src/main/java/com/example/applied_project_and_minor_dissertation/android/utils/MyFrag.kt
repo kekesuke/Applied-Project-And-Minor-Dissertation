@@ -1,4 +1,4 @@
-package misc
+package utils
 
 import androidx.fragment.app.Fragment
 

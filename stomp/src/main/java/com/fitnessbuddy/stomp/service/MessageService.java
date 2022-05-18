@@ -6,9 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Slf4j
 @Service
 public class MessageService {
@@ -18,9 +15,9 @@ public class MessageService {
 
 
     public void Message(String message){
-        log.debug("Start convertAndSend ${new Date()}");
-        simp.convertAndSend("/topic/greetings", new MessageModel(message));
-        log.debug("End convertAndSend ${new Date()}");
+        log.debug("======================");
+        simp.convertAndSend("/topic/chat", new MessageModel(message));
+        log.debug("======================");
     }
 
 

@@ -21,8 +21,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     public void configureMessageBroker(MessageBrokerRegistry config){
 
         long [] heartbeat = new long[2];
-        heartbeat[0] = 30000;
-        heartbeat[1] = 30000;
+        heartbeat[0] = 10000;
+        heartbeat[1] = 10000;
 
         config.enableSimpleBroker("/topic","/queue", "/exchange")
                 .setTaskScheduler(new DefaultManagedTaskScheduler())

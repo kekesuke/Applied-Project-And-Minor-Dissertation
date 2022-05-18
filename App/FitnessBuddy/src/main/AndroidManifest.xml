@@ -35,6 +35,14 @@
             android:value="@string/google_maps_key" />
 
         <activity
+            android:name=".ui.chat.ChatActivity"
+            android:exported="false"
+            android:label="Fitness Buddy"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/title_activity_main"
@@ -47,15 +55,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ChatActivity"
-            android:exported="true"
-            android:label="Fitness Buddy"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-
-        </activity>
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
