@@ -1,25 +1,14 @@
 package com.fitnessbuddy.stomp.model;
 import lombok.*;
 
-import javax.persistence.*;
+
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@Setter
-@Builder
 public class MessageModel {
 
-	@Id
-	private String messageId;
-	private String chatId;
-	private String senderId;
-	private String recieverId;
-	private String sendUsername;
-	private String messageContent;
-	private String userName;
-	private String timeStamp;
+	String message;
+
+	public MessageModel(String echo) {this.message = echo;}
 };
 
 

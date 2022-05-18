@@ -2,52 +2,32 @@ package com.fitnessbuddy.stomp.controllers;
 
 import com.fitnessbuddy.stomp.model.MessageModel;
 import com.fitnessbuddy.stomp.service.MessageService;
-import com.fitnessbuddy.stomp.service.MessageService;
-import com.fitnessbuddy.stomp.service.RoomService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
-import org.springframework.stereotype.Controller;
-import com.fitnessbuddy.stomp.response.MessageResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
+@Slf4j
+@RestController
 public class MessageController {
 
     @Autowired
-    private SimpMessagingTemplate msgTemp;
-    @Autowired
-    private MessageService messageService;
-    @Autowired
-    private RoomService roomService;
+    MessageService messageService;
 
-    @MessageMapping("/chat")
-    public void message(@Payload MessageModel message){
-        var chatId = roomService.findById(message.getSenderId(),message.getRecieverId(), true);
-        message.setChatId(chatId.get());
-
-        MessageModel savedMessage = messageService.save(message);
-        msgTemp.convertAndSendToUser(message.getRecieverId(),"/queue/messages", savedMessage);
+    @MessageMapping("/hello-msg-mappung")
+    @SendTo("/topic/greetings")
+    public MessageModel echoMessageMapping(String message){
+        log.debug("React to hello-msg-mapping");
+        return new MessageModel(message);
     }
 
-    @GetMapping("/messages/{sendId}/recieveId}/count")
-    public ResponseEntity<Long> countMessages (@PathVariable String sendId, @PathVariable String recipientId) {
-        return ResponseEntity.ok(messageService.countMessages(sendId,recipientId));
+    @RequestMapping(value = "/hello-covert-and-send", method = RequestMethod.POST)
+    public void echoConvertAndSend(@RequestParam("msg") String message){
+        messageService.Message(message);
     }
 
-    @GetMapping("/messages/{sendId}/recieveId}")
-    public ResponseEntity<?> findChatMessages (@PathVariable String sendId, @PathVariable String recipientId) {
-        return ResponseEntity.ok(messageService.findMessages(sendId,recipientId));
-    }
 
-    @GetMapping("/messages/{id}")
-    public ResponseEntity<?> findMessages (@PathVariable String id) throws Exception {
-        return ResponseEntity.ok(messageService.findById(id));
-    }
 
 
 

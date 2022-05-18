@@ -1,19 +1,11 @@
 
 package com.fitnessbuddy.stomp.config;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.messaging.converter.DefaultContentTypeResolver;
-import org.springframework.messaging.converter.MappingJackson2MessageConverter;
-import org.springframework.messaging.converter.MessageConverter;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
-import org.springframework.util.MimeTypeUtils;
-import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
-import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
-import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
+import org.springframework.scheduling.concurrent.DefaultManagedTaskScheduler;
+import org.springframework.web.socket.config.annotation.*;
 
-import javax.activation.MimeType;
-import java.util.List;
 
 @Configuration
 @EnableWebSocketMessageBroker
@@ -26,22 +18,23 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     }
 
     @Override
-    public void configureMessageBroker(MessageBrokerRegistry registryConfig) {
-        registryConfig.enableSimpleBroker("/user");
-        registryConfig.setApplicationDestinationPrefixes("/app");
-        registryConfig.setUserDestinationPrefix("/user");
+    public void configureMessageBroker(MessageBrokerRegistry config){
+
+        long [] heartbeat = new long[2];
+        heartbeat[0] = 30000;
+        heartbeat[1] = 30000;
+
+        config.enableSimpleBroker("/topic","/queue", "/exchange")
+                .setTaskScheduler(new DefaultManagedTaskScheduler())
+                .setHeartbeatValue(heartbeat);
+
+        config.setApplicationDestinationPrefixes("/topic", "/queue");
+        config.setUserDestinationPrefix("/user");
     }
 
     @Override
-    public boolean configureMessageConverters(List<MessageConverter> messageConverter)
-    {
-        DefaultContentTypeResolver resolve = new DefaultContentTypeResolver();
-        resolve.setDefaultMimeType(MimeTypeUtils.APPLICATION_JSON);
-        MappingJackson2MessageConverter JacksonConverter = new MappingJackson2MessageConverter();
-        JacksonConverter.setObjectMapper(new ObjectMapper());
-        JacksonConverter.setContentTypeResolver(resolve);
-        messageConverter.add(JacksonConverter);
-        return false;
+    public void configureWebSocketTransport(WebSocketTransportRegistration reg){
+        reg.setMessageSizeLimit(8 * 1024);
     }
 
 }
