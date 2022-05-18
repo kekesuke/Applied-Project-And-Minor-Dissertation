@@ -85,6 +85,7 @@ dependencies {
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
 
     // retrofit
+    implementation("com.github.NaikSoftware:StompProtocolAndroid:1.6.6")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("io.reactivex.rxjava2:rxandroid:2.0.1")
