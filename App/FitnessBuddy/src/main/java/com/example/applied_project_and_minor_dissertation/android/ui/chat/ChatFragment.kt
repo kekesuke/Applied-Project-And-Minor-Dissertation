@@ -1,5 +1,6 @@
 package com.example.applied_project_and_minor_dissertation.android.ui.chat
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,8 @@ class ChatFragment : Fragment () {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.activity_chat, container, false)
 
+        val intent = Intent(activity, ChatActivity::class.java)
+        startActivity(intent)
 
 
         return view
