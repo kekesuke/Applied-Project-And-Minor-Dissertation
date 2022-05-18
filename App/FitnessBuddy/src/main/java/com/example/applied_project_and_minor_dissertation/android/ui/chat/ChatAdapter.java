@@ -1,12 +1,12 @@
 package com.example.applied_project_and_minor_dissertation.android.ui.chat;
 
 import android.view.LayoutInflater;
-import android.view.TextureView;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.applied_project_and_minor_dissertation.android.R;
@@ -19,10 +19,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.SimpleViewHold
 
     public ChatAdapter(List<String> data) {dataSet = data;}
 
-    
+
     @Override
     public SimpleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new SimpleViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout), parent, false));
+        return new SimpleViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false));
     }
 
     @Override
